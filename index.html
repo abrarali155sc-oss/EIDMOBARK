@@ -1,2969 +1,1516 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-    <title>🌙 عيد مبارك — موقع معايدات عيد الفطر</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Amiri:wght@400;700&display=swap"
-        rel="stylesheet">
-    <style>
-        :root {
-            --bg: #07040f;
-            --bg2: #0e0720;
-            --bg3: #150b2e;
-            --bg4: #1c1040;
-            --gold: #f5c842;
-            --gold2: #e8a020;
-            --gold3: #fde68a;
-            --gold4: #fff8d6;
-            --rose: #ff6b9d;
-            --teal: #00d4b8;
-            --purple: #8b5cf6;
-            --violet: #c084fc;
-            --green: #22c55e;
-            --red: #ef4444;
-            --txt: #fef3c7;
-            --txt2: #c9a85c;
-            --txt3: #7a6040;
-            --border: rgba(245, 200, 66, .18);
-            --bh: rgba(245, 200, 66, .45);
-            --f: 'Cairo', sans-serif;
-            --fd: 'Amiri', serif;
-            --r: 14px;
-            --rs: 9px
-        }
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0
-        }
-
-        html {
-            scroll-behavior: smooth
-        }
-
-        body {
-            font-family: var(--f);
-            background: var(--bg);
-            color: var(--txt);
-            min-height: 100vh;
-            overflow-x: hidden;
-            direction: rtl
-        }
-
-        /* BG */
-        .bg-layer {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden
-        }
-
-        .bg-grd {
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 65% 50% at 15% 10%, rgba(139, 92, 246, .2) 0%, transparent 55%),
-                radial-gradient(ellipse 55% 45% at 85% 90%, rgba(245, 200, 66, .1) 0%, transparent 55%),
-                radial-gradient(ellipse 45% 55% at 55% 45%, rgba(255, 107, 157, .07) 0%, transparent 60%),
-                linear-gradient(155deg, #07040f 0%, #0e0720 50%, #070410 100%)
-        }
-
-        .stars {
-            position: absolute;
-            inset: 0
-        }
-
-        .star {
-            position: absolute;
-            border-radius: 50%;
-            background: #fde68a;
-            animation: twk var(--td, 3s) var(--tl, 0s) infinite
-        }
-
-        @keyframes twk {
-
-            0%,
-            100% {
-                opacity: .08;
-                transform: scale(1)
-            }
-
-            50% {
-                opacity: .9;
-                transform: scale(1.9)
-            }
-        }
-
-        .eid-floats {
-            position: absolute;
-            inset: 0
-        }
-
-        .ef {
-            position: absolute;
-            animation: flt var(--fd2, 8s) var(--fl, 0s) ease-in-out infinite alternate;
-            user-select: none
-        }
-
-        @keyframes flt {
-            0% {
-                transform: translateY(0) rotate(var(--r0, 0deg))
-            }
-
-            100% {
-                transform: translateY(-25px) rotate(var(--r1, 12deg))
-            }
-        }
-
-        /* Geometric overlay */
-        .geo {
-            position: absolute;
-            inset: 0;
-            opacity: .012;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cpolygon points='50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5' fill='none' stroke='%23f5c842' stroke-width='1'/%3E%3Cpolygon points='50,20 80,35 80,65 50,80 20,65 20,35' fill='none' stroke='%23f5c842' stroke-width='.5'/%3E%3C/svg%3E")
-        }
-
-        /* NAV */
-        .nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(7, 4, 15, .9);
-            backdrop-filter: blur(22px);
-            -webkit-backdrop-filter: blur(22px);
-            border-bottom: 1px solid var(--border);
-            padding: 0 1rem;
-            height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: .6rem
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: .4rem;
-            text-decoration: none
-        }
-
-        .nli {
-            font-size: 1.5rem
-        }
-
-        .nlt {
-            font-family: var(--fd);
-            font-size: 1.15rem;
-            color: var(--gold);
-            font-weight: 700
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: .4rem
-        }
-
-        .nbtn {
-            display: flex;
-            align-items: center;
-            gap: .28rem;
-            padding: .33rem .65rem;
-            border-radius: var(--rs);
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--txt2);
-            font-family: var(--f);
-            font-size: .74rem;
-            cursor: pointer;
-            transition: all .2s;
-            white-space: nowrap
-        }
-
-        .nbtn:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-            background: rgba(245, 200, 66, .06)
-        }
-
-        .nbtn.boost-btn {
-            background: rgba(245, 200, 66, .05);
-            border-color: rgba(245, 200, 66, .28);
-            color: var(--gold)
-        }
-
-        .avbtn {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold), var(--rose));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: .78rem;
-            font-weight: 700;
-            color: #1a0800;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: all .2s;
-            flex-shrink: 0
-        }
-
-        .avbtn:hover {
-            border-color: var(--gold);
-            transform: scale(1.08)
-        }
-
-        /* MAIN */
-        .main {
-            position: relative;
-            z-index: 1;
-            max-width: 860px;
-            margin: 0 auto;
-            padding: 1.4rem .85rem 5rem
-        }
-
-        /* HERO */
-        .hero {
-            text-align: center;
-            padding: 1rem 0 1.8rem;
-            animation: up .65s ease both
-        }
-
-        @keyframes up {
-            from {
-                opacity: 0;
-                transform: translateY(-18px)
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0)
-            }
-        }
-
-        .moon-row {
-            font-size: 2.8rem;
-            display: block;
-            margin-bottom: .5rem;
-            animation: mf 4s ease-in-out infinite
-        }
-
-        @keyframes mf {
-
-            0%,
-            100% {
-                transform: translateY(0) rotate(-4deg)
-            }
-
-            50% {
-                transform: translateY(-10px) rotate(4deg)
-            }
-        }
-
-        .hero h1 {
-            font-family: var(--fd);
-            font-size: clamp(1.8rem, 5.5vw, 3rem);
-            color: var(--gold);
-            text-shadow: 0 0 40px rgba(245, 200, 66, .45), 0 0 80px rgba(245, 200, 66, .18);
-            line-height: 1.2;
-            margin-bottom: .3rem
-        }
-
-        .hero-sub {
-            font-size: clamp(.82rem, 2.4vw, 1rem);
-            color: var(--txt2);
-            max-width: 500px;
-            margin: 0 auto .75rem;
-            line-height: 1.65
-        }
-
-        .eid-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: .35rem;
-            padding: .35rem 1rem;
-            border-radius: 30px;
-            background: linear-gradient(135deg, rgba(245, 200, 66, .1), rgba(255, 107, 157, .08));
-            border: 1px solid rgba(245, 200, 66, .28);
-            color: var(--gold3);
-            font-size: .8rem;
-            animation: pulse 3s ease-in-out infinite
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                box-shadow: 0 0 0 0 rgba(245, 200, 66, .25)
-            }
-
-            50% {
-                box-shadow: 0 0 0 8px rgba(245, 200, 66, 0)
-            }
-        }
-
-        /* CLOCK BAR */
-        .clock-bar {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: .55rem;
-            margin: 1rem 0;
-            animation: up .6s ease .1s both
-        }
-
-        @media(max-width:560px) {
-            .clock-bar {
-                grid-template-columns: 1fr 1fr
-            }
-        }
-
-        .cbox {
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            border-radius: var(--r);
-            padding: .8rem .7rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            transition: border-color .2s
-        }
-
-        .cbox:hover {
-            border-color: var(--bh)
-        }
-
-        .cbox::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), var(--rose), var(--gold), transparent)
-        }
-
-        .cbi {
-            font-size: 1.25rem;
-            margin-bottom: .2rem;
-            display: block
-        }
-
-        .cbv {
-            font-size: .95rem;
-            font-weight: 700;
-            color: var(--gold);
-            line-height: 1.25
-        }
-
-        .time-digits {
-            font-size: 1.45rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-            color: var(--gold);
-            font-variant-numeric: tabular-nums
-        }
-
-        .cbl {
-            font-size: .62rem;
-            color: var(--txt3);
-            margin-top: .12rem;
-            letter-spacing: .3px
-        }
-
-        /* COUNTDOWN */
-        .cdown {
-            background: var(--bg3);
-            border: 1px solid rgba(245, 200, 66, .22);
-            border-radius: var(--r);
-            padding: 1rem .9rem;
-            text-align: center;
-            margin-bottom: 1.2rem;
-            position: relative;
-            overflow: hidden;
-            animation: up .6s ease .2s both
-        }
-
-        .cdown::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(245, 200, 66, .03), rgba(255, 107, 157, .03));
-            pointer-events: none
-        }
-
-        .cdown-title {
-            font-size: .8rem;
-            color: var(--txt2);
-            margin-bottom: .65rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: .3rem
-        }
-
-        .cd-grid {
-            display: flex;
-            justify-content: center;
-            gap: .45rem;
-            flex-wrap: wrap;
-            align-items: flex-start
-        }
-
-        .cd-unit {
-            background: rgba(245, 200, 66, .06);
-            border: 1px solid rgba(245, 200, 66, .18);
-            border-radius: 9px;
-            padding: .5rem .65rem;
-            min-width: 60px;
-            text-align: center
-        }
-
-        .cd-num {
-            font-size: 1.75rem;
-            font-weight: 900;
-            color: var(--gold);
-            font-variant-numeric: tabular-nums;
-            display: block;
-            line-height: 1
-        }
-
-        .cd-lbl {
-            font-size: .6rem;
-            color: var(--txt3);
-            margin-top: .12rem
-        }
-
-        .cd-sep {
-            font-size: 1.75rem;
-            color: rgba(245, 200, 66, .5);
-            font-weight: 900;
-            margin-top: .45rem
-        }
-
-        .eid-passed {
-            font-size: 1.05rem;
-            color: var(--gold);
-            font-family: var(--fd);
-            padding: .4rem
-        }
-
-        /* CARD */
-        .card {
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            border-radius: var(--r);
-            padding: 1.2rem 1rem;
-            animation: up .6s ease .12s both
-        }
-
-        .card:hover {
-            border-color: rgba(245, 200, 66, .26)
-        }
-
-        .ftitle {
-            font-size: .96rem;
-            font-weight: 700;
-            color: var(--gold);
-            margin-bottom: .95rem;
-            display: flex;
-            align-items: center;
-            gap: .4rem
-        }
-
-        /* FORM */
-        .fgrid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: .8rem
-        }
-
-        @media(max-width:550px) {
-            .fgrid {
-                grid-template-columns: 1fr
-            }
-        }
-
-        .fg {
-            display: flex;
-            flex-direction: column;
-            gap: .28rem
-        }
-
-        .fg.fw {
-            grid-column: 1/-1
-        }
-
-        label {
-            font-size: .74rem;
-            color: var(--txt2);
-            font-weight: 600;
-            letter-spacing: .3px
-        }
-
-        .inp,
-        select,
-        textarea {
-            background: rgba(255, 255, 255, .035);
-            border: 1px solid rgba(245, 200, 66, .13);
-            border-radius: var(--rs);
-            padding: .55rem .78rem;
-            color: var(--txt);
-            font-family: var(--f);
-            font-size: .86rem;
-            width: 100%;
-            outline: none;
-            transition: all .22s;
-            direction: rtl
-        }
-
-        .inp:focus,
-        select:focus,
-        textarea:focus {
-            border-color: var(--gold);
-            background: rgba(245, 200, 66, .04);
-            box-shadow: 0 0 0 3px rgba(245, 200, 66, .09)
-        }
-
-        select option {
-            background: var(--bg3);
-            color: var(--txt)
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 85px
-        }
-
-        .inp:disabled {
-            opacity: .38;
-            cursor: not-allowed
-        }
-
-        .anon-row {
-            display: flex;
-            align-items: center;
-            gap: .4rem;
-            margin-top: .18rem
-        }
-
-        .tsw {
-            position: relative;
-            width: 33px;
-            height: 17px;
-            flex-shrink: 0
-        }
-
-        .tsw input {
-            opacity: 0;
-            width: 0;
-            height: 0
-        }
-
-        .tsl {
-            position: absolute;
-            inset: 0;
-            background: rgba(255, 255, 255, .08);
-            border-radius: 20px;
-            cursor: pointer;
-            transition: .28s
-        }
-
-        .tsl::before {
-            content: '';
-            position: absolute;
-            width: 11px;
-            height: 11px;
-            right: 3px;
-            top: 3px;
-            background: white;
-            border-radius: 50%;
-            transition: .28s
-        }
-
-        .tsw input:checked+.tsl {
-            background: var(--gold)
-        }
-
-        .tsw input:checked+.tsl::before {
-            transform: translateX(-15px)
-        }
-
-        .tlabel {
-            font-size: .71rem;
-            color: var(--txt3);
-            cursor: pointer;
-            user-select: none
-        }
-
-        .ai-panel {
-            display: none;
-            padding: .8rem;
-            background: rgba(139, 92, 246, .05);
-            border: 1px solid rgba(139, 92, 246, .18);
-            border-radius: var(--rs);
-            gap: .65rem
-        }
-
-        .ai-panel.show {
-            display: grid;
-            grid-template-columns: 1fr 1fr
-        }
-
-        @media(max-width:460px) {
-            .ai-panel.show {
-                grid-template-columns: 1fr
-            }
-        }
-
-        .ai-panel label {
-            color: var(--violet)
-        }
-
-        .tchips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: .35rem;
-            margin-top: .1rem
-        }
-
-        .tchip {
-            padding: .3rem .68rem;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--txt2);
-            font-family: var(--f);
-            font-size: .72rem;
-            cursor: pointer;
-            transition: all .2s;
-            white-space: nowrap
-        }
-
-        .tchip:hover {
-            border-color: var(--gold);
-            color: var(--gold)
-        }
-
-        .tchip.sel {
-            background: linear-gradient(135deg, rgba(245, 200, 66, .16), rgba(255, 107, 157, .1));
-            border-color: var(--gold);
-            color: var(--gold3);
-            font-weight: 700
-        }
-
-        .tchip.ai-chip.sel {
-            background: linear-gradient(135deg, rgba(139, 92, 246, .18), rgba(192, 132, 252, .12));
-            border-color: var(--purple);
-            color: var(--violet)
-        }
-
-        .sbtn {
-            width: 100%;
-            padding: .75rem;
-            border-radius: var(--rs);
-            border: none;
-            background: linear-gradient(135deg, #f5c842, #e8a020, #f5c842);
-            background-size: 200% 100%;
-            color: #1a0800;
-            font-family: var(--f);
-            font-size: .93rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all .25s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: .38rem;
-            margin-top: .5rem;
-            animation: shim 3s linear infinite
-        }
-
-        @keyframes shim {
-            0% {
-                background-position: 0%
-            }
-
-            100% {
-                background-position: 200%
-            }
-        }
-
-        .sbtn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 28px rgba(245, 200, 66, .38)
-        }
-
-        .sbtn:active {
-            transform: translateY(0)
-        }
-
-        .sbtn:disabled {
-            opacity: .48;
-            cursor: not-allowed;
-            animation: none
-        }
-
-        .spin {
-            width: 15px;
-            height: 15px;
-            border: 2px solid rgba(0, 0, 0, .18);
-            border-top-color: #1a0800;
-            border-radius: 50%;
-            animation: sp .6s linear infinite;
-            flex-shrink: 0
-        }
-
-        @keyframes sp {
-            to {
-                transform: rotate(360deg)
-            }
-        }
-
-        /* FEED HEADER */
-        .shdr {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 1.5rem 0 .8rem
-        }
-
-        .stitle {
-            font-size: .95rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: .38rem;
-            color: var(--gold3)
-        }
-
-        .sbadge {
-            background: rgba(245, 200, 66, .1);
-            color: var(--gold);
-            font-size: .67rem;
-            padding: .13rem .42rem;
-            border-radius: 20px;
-            border: 1px solid rgba(245, 200, 66, .22)
-        }
-
-        .live-dot {
-            display: flex;
-            align-items: center;
-            gap: .25rem;
-            font-size: .68rem;
-            color: var(--txt3)
-        }
-
-        .ldot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--teal);
-            animation: lp 2s infinite
-        }
-
-        @keyframes lp {
-
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1)
-            }
-
-            50% {
-                opacity: .3;
-                transform: scale(.65)
-            }
-        }
-
-        /* GREETING CARDS */
-        .gfeed {
-            display: flex;
-            flex-direction: column;
-            gap: .7rem
-        }
-
-        .gcard {
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            border-radius: var(--r);
-            padding: .95rem .9rem;
-            transition: all .25s;
-            animation: cin .4s ease;
-            position: relative;
-            overflow: hidden
-        }
-
-        @keyframes cin {
-            from {
-                opacity: 0;
-                transform: translateY(9px)
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0)
-            }
-        }
-
-        .gcard::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--gold), var(--rose), var(--purple))
-        }
-
-        .gcard::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(245, 200, 66, .18), transparent)
-        }
-
-        .gcard:hover {
-            border-color: rgba(245, 200, 66, .38);
-            box-shadow: 0 4px 28px rgba(245, 200, 66, .09)
-        }
-
-        .ghdr {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: .55rem;
-            margin-bottom: .6rem
-        }
-
-        .gfrom {
-            display: flex;
-            align-items: center;
-            gap: .48rem
-        }
-
-        .gavtr {
-            width: 33px;
-            height: 33px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold), var(--rose));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: .76rem;
-            font-weight: 700;
-            color: #1a0800;
-            flex-shrink: 0
-        }
-
-        .gmeta {
-            display: flex;
-            flex-direction: column;
-            gap: .04rem
-        }
-
-        .gnames {
-            font-size: .8rem;
-            font-weight: 600
-        }
-
-        .gnames .arr {
-            color: var(--gold);
-            margin: 0 .18rem
-        }
-
-        .gnames .to {
-            color: var(--gold3)
-        }
-
-        .gtime {
-            font-size: .64rem;
-            color: var(--txt3)
-        }
-
-        .gbadge {
-            font-size: .65rem;
-            padding: .15rem .48rem;
-            border-radius: 20px;
-            border: 1px solid rgba(245, 200, 66, .32);
-            background: rgba(245, 200, 66, .07);
-            color: var(--gold);
-            white-space: nowrap;
-            flex-shrink: 0
-        }
-
-        .gbody {
-            font-family: var(--fd);
-            font-size: .95rem;
-            line-height: 1.8;
-            padding: .6rem .75rem;
-            margin-bottom: .65rem;
-            background: rgba(255, 255, 255, .022);
-            border-radius: var(--rs);
-            border-right: 2px solid rgba(245, 200, 66, .18);
-            white-space: pre-wrap;
-            word-break: break-word;
-            color: var(--txt)
-        }
-
-        .gactions {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: .35rem;
-            flex-wrap: wrap
-        }
-
-        .share-row {
-            display: flex;
-            gap: .26rem;
-            flex-wrap: wrap
-        }
-
-        .shrbtn {
-            display: flex;
-            align-items: center;
-            gap: .2rem;
-            padding: .24rem .5rem;
-            border-radius: 6px;
-            border: 1px solid rgba(245, 200, 66, .12);
-            background: transparent;
-            color: var(--txt3);
-            font-family: var(--f);
-            font-size: .66rem;
-            cursor: pointer;
-            transition: all .2s;
-            text-decoration: none
-        }
-
-        .shrbtn:hover {
-            transform: translateY(-1px)
-        }
-
-        .shrbtn.wa:hover {
-            border-color: #25d366;
-            color: #25d366;
-            background: rgba(37, 211, 102, .05)
-        }
-
-        .shrbtn.tw:hover {
-            border-color: #1da1f2;
-            color: #1da1f2;
-            background: rgba(29, 161, 242, .05)
-        }
-
-        .shrbtn.fb:hover {
-            border-color: #1877f2;
-            color: #1877f2;
-            background: rgba(24, 119, 242, .05)
-        }
-
-        .shrbtn.cp:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-            background: rgba(245, 200, 66, .05)
-        }
-
-        .shrbtn.sh:hover {
-            border-color: var(--violet);
-            color: var(--violet);
-            background: rgba(192, 132, 252, .05)
-        }
-
-        .owner-row {
-            display: flex;
-            gap: .26rem
-        }
-
-        .obtn {
-            padding: .24rem .5rem;
-            border-radius: 6px;
-            border: 1px solid rgba(245, 200, 66, .12);
-            background: transparent;
-            font-family: var(--f);
-            font-size: .66rem;
-            cursor: pointer;
-            transition: all .2s;
-            color: var(--txt3)
-        }
-
-        .obtn.ed:hover {
-            border-color: var(--teal);
-            color: var(--teal);
-            background: rgba(0, 212, 184, .05)
-        }
-
-        .obtn.dl:hover {
-            border-color: var(--red);
-            color: var(--red);
-            background: rgba(239, 68, 68, .05)
-        }
-
-        .vedit {
-            display: none;
-            margin-top: .45rem
-        }
-
-        .vedit.show {
-            display: block
-        }
-
-        .vbody.hide {
-            display: none
-        }
-
-        .edit-btns {
-            display: flex;
-            gap: .3rem;
-            margin-top: .3rem
-        }
-
-        .esbtn {
-            padding: .26rem .56rem;
-            border-radius: 6px;
-            border: 1px solid var(--teal);
-            background: rgba(0, 212, 184, .07);
-            color: var(--teal);
-            font-family: var(--f);
-            font-size: .68rem;
-            cursor: pointer
-        }
-
-        .ecbtn {
-            padding: .26rem .56rem;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--txt3);
-            font-family: var(--f);
-            font-size: .68rem;
-            cursor: pointer
-        }
-
-        /* BOOST */
-        .bfeed {
-            display: flex;
-            flex-direction: column;
-            gap: .48rem
-        }
-
-        .bitem {
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            border-radius: var(--rs);
-            padding: .6rem .8rem;
-            display: flex;
-            align-items: center;
-            gap: .55rem
-        }
-
-        .bplaticon {
-            font-size: 1.1rem;
-            flex-shrink: 0
-        }
-
-        .binfo {
-            flex: 1;
-            min-width: 0
-        }
-
-        .bwho {
-            font-size: .75rem;
-            font-weight: 600
-        }
-
-        .breact {
-            font-size: .65rem;
-            color: var(--txt3);
-            margin-top: .04rem
-        }
-
-        .bgobtn {
-            padding: .26rem .56rem;
-            border-radius: 6px;
-            background: rgba(245, 200, 66, .07);
-            border: 1px solid rgba(245, 200, 66, .28);
-            color: var(--gold);
-            font-size: .68rem;
-            font-family: var(--f);
-            cursor: pointer;
-            text-decoration: none;
-            transition: all .2s;
-            white-space: nowrap
-        }
-
-        .bgobtn:hover {
-            background: rgba(245, 200, 66, .15)
-        }
-
-        /* MODALS */
-        .moverlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, .82);
-            backdrop-filter: blur(7px);
-            z-index: 200;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: .7rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity .22s
-        }
-
-        .moverlay.open {
-            opacity: 1;
-            pointer-events: all
-        }
-
-        .modal {
-            background: var(--bg2);
-            border: 1px solid var(--border);
-            border-radius: var(--r);
-            padding: 1.2rem 1rem;
-            width: 100%;
-            max-width: 430px;
-            max-height: 88vh;
-            overflow-y: auto;
-            transform: translateY(18px) scale(.97);
-            transition: transform .22s
-        }
-
-        .moverlay.open .modal {
-            transform: translateY(0) scale(1)
-        }
-
-        .mhdr {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: .95rem
-        }
-
-        .mtitle {
-            font-size: .94rem;
-            font-weight: 700;
-            color: var(--gold)
-        }
-
-        .mclose {
-            width: 27px;
-            height: 27px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--txt2);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: .82rem;
-            transition: all .2s
-        }
-
-        .mclose:hover {
-            border-color: var(--gold);
-            color: var(--gold)
-        }
-
-        .pgrid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: .42rem;
-            margin: .5rem 0
-        }
-
-        .pcard {
-            border: 1px solid var(--border);
-            border-radius: var(--rs);
-            padding: .58rem;
-            cursor: pointer;
-            transition: all .2s;
-            text-align: center;
-            background: transparent;
-            color: var(--txt);
-            font-family: var(--f);
-            width: 100%
-        }
-
-        .pcard:hover:not(:disabled) {
-            border-color: rgba(245, 200, 66, .38)
-        }
-
-        .pcard.sel {
-            border-color: var(--gold);
-            background: rgba(245, 200, 66, .06)
-        }
-
-        .pcard:disabled {
-            opacity: .33;
-            cursor: not-allowed
-        }
-
-        .picon {
-            font-size: 1.25rem;
-            margin-bottom: .16rem
-        }
-
-        .pname {
-            font-size: .71rem;
-            font-weight: 600
-        }
-
-        .pstatus {
-            font-size: .58rem;
-            margin-top: .07rem
-        }
-
-        .av {
-            color: var(--green)
-        }
-
-        .so {
-            color: var(--txt3)
-        }
-
-        .rchips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: .3rem;
-            margin: .3rem 0
-        }
-
-        .rchip {
-            padding: .26rem .56rem;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            background: transparent;
-            cursor: pointer;
-            font-size: .71rem;
-            font-family: var(--f);
-            color: var(--txt2);
-            transition: all .2s
-        }
-
-        .rchip:hover {
-            border-color: var(--gold);
-            color: var(--gold)
-        }
-
-        .rchip.sel {
-            background: rgba(245, 200, 66, .1);
-            border-color: var(--gold);
-            color: var(--gold)
-        }
-
-        /* Profile */
-        .pinfo {
-            display: flex;
-            align-items: center;
-            gap: .8rem;
-            margin-bottom: .85rem
-        }
-
-        .bigavtr {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold), var(--rose));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #1a0800;
-            flex-shrink: 0
-        }
-
-        .pnm {
-            font-weight: 700;
-            font-size: .9rem
-        }
-
-        .pid {
-            font-size: .65rem;
-            color: var(--txt3);
-            margin-top: .07rem
-        }
-
-        .pstats {
-            display: flex;
-            gap: 1.1rem;
-            margin: .75rem 0
-        }
-
-        .pstat {
-            text-align: center
-        }
-
-        .psnum {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--gold)
-        }
-
-        .pslbl {
-            font-size: .65rem;
-            color: var(--txt3)
-        }
-
-        .dvdr {
-            height: 1px;
-            background: var(--border);
-            margin: .85rem 0
-        }
-
-        /* Toast */
-        .tcont {
-            position: fixed;
-            bottom: 1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: .32rem;
-            pointer-events: none
-        }
-
-        .toast {
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            border-radius: var(--rs);
-            padding: .52rem .95rem;
-            font-size: .78rem;
-            color: var(--txt);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, .55);
-            white-space: nowrap;
-            animation: tin .2s ease, tout .2s ease 2.8s forwards;
-            pointer-events: auto
-        }
-
-        .toast.ok {
-            border-color: var(--teal);
-            color: var(--teal)
-        }
-
-        .toast.err {
-            border-color: var(--red);
-            color: var(--red)
-        }
-
-        @keyframes tin {
-            from {
-                opacity: 0;
-                transform: translateY(12px)
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0)
-            }
-        }
-
-        @keyframes tout {
-            from {
-                opacity: 1
-            }
-
-            to {
-                opacity: 0;
-                transform: translateY(5px)
-            }
-        }
-
-        /* Skeleton */
-        .skel {
-            background: linear-gradient(90deg, rgba(255, 255, 255, .03) 0%, rgba(255, 255, 255, .065) 50%, rgba(255, 255, 255, .03) 100%);
-            background-size: 200% 100%;
-            animation: sh 1.5s infinite;
-            border-radius: var(--rs)
-        }
-
-        @keyframes sh {
-            to {
-                background-position: -200% 0
-            }
-        }
-
-        /* Empty */
-        .empty {
-            text-align: center;
-            padding: 1.8rem 1rem;
-            color: var(--txt3)
-        }
-
-        .eicon {
-            font-size: 2rem;
-            margin-bottom: .35rem
-        }
-
-        /* Firework */
-        @keyframes burst {
-            0% {
-                transform: translate(0, 0) scale(1);
-                opacity: 1
-            }
-
-            100% {
-                transform: translate(var(--dx), var(--dy)) scale(0);
-                opacity: 0
-            }
-        }
-
-        .particle {
-            position: fixed;
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 998;
-            animation: burst .85s ease-out forwards
-        }
-
-        ::-webkit-scrollbar {
-            width: 4px
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg)
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgba(245, 200, 66, .18);
-            border-radius: 2px
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(245, 200, 66, .38)
-        }
-
-        @media(max-width:430px) {
-            .nav {
-                padding: 0 .55rem
-            }
-
-            .nlt {
-                font-size: .95rem
-            }
-
-            .nbtn .nbl {
-                display: none
-            }
-
-            .main {
-                padding: 1rem .55rem 3.5rem
-            }
-
-            .clock-bar {
-                grid-template-columns: 1fr 1fr
-            }
-
-            .clock-bar .cbox:last-child {
-                display: none
-            }
-
-            .cd-num {
-                font-size: 1.45rem
-            }
-
-            .cd-unit {
-                min-width: 50px
-            }
-
-            .hero h1 {
-                font-size: 1.75rem
-            }
-        }
-
-        /* ==================================================
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+<!-- ══ PRIMARY SEO ══════════════════════════════════════ -->
+<title>🌙 عيد الفطر المبارك — أرسل معايدتك لأحبائك</title>
+<meta name="description"        content="موقع معايدات عيد الفطر المبارك — أرسل تهنئتك لأحبائك بمعايدة مكتوبة بالذكاء الاصطناعي بلغتك ولهجتك. شارك فرحتك عبر واتساب وفيسبوك وتويتر.">
+<meta name="keywords"           content="عيد الفطر, معايدات, تهاني, عيد مبارك, رمضان, كل عام وانتم بخير, رسائل العيد, معايدة العيد, تهنئة عيد الفطر">
+<meta name="author"             content="موقع عيد مبارك">
+<meta name="robots"             content="index, follow, max-image-preview:large">
+<meta name="theme-color"        content="#f5c842">
+<link rel="canonical"           href="https://eidmbark.web.app/">
+
+<!-- ══ OPEN GRAPH (Facebook, WhatsApp, Telegram…) ═══════ -->
+<meta property="og:type"        content="website">
+<meta property="og:site_name"   content="عيد مبارك — موقع المعايدات">
+<meta property="og:title"       content="🌙 عيد الفطر المبارك — أرسل معايدتك لأحبائك">
+<meta property="og:description" content="أرسل تهنئتك لأحبائك بمعايدة خاصة مكتوبة بالذكاء الاصطناعي بلغتك ولهجتك ✨">
+<meta property="og:url"         content="https://eidmbark.web.app/">
+<meta property="og:image"       content="https://eidmbark.web.app/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height"content="630">
+<meta property="og:image:alt"   content="موقع معايدات عيد الفطر المبارك">
+<meta property="og:locale"      content="ar_AR">
+
+<!-- ══ TWITTER / X CARD ════════════════════════════════ -->
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="🌙 عيد الفطر المبارك — أرسل معايدتك">
+<meta name="twitter:description" content="أرسل تهنئتك لأحبائك بمعايدة خاصة مكتوبة بالذكاء الاصطناعي ✨">
+<meta name="twitter:image"       content="https://eidmbark.web.app/og-cover.jpg">
+<meta name="twitter:image:alt"   content="موقع معايدات عيد الفطر المبارك">
+
+<!-- ══ WHATSAPP / TELEGRAM SPECIFIC ════════════════════ -->
+<meta property="og:image:type"  content="image/jpeg">
+
+<!-- ══ SCHEMA.ORG JSON-LD (Google Rich Results) ════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "عيد مبارك — موقع المعايدات",
+  "url": "https://eidmbark.web.app/",
+  "description": "موقع معايدات عيد الفطر المبارك — أرسل تهنئتك لأحبائك بمعايدة مكتوبة بالذكاء الاصطناعي",
+  "inLanguage": "ar",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://eidmbark.web.app/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "عيد الفطر المبارك ١٤٤٧ هـ",
+  "startDate": "2026-03-29",
+  "description": "عيد الفطر المبارك — نهاية شهر رمضان الكريم",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "inLanguage": "ar"
+}
+</script>
+
+<!-- ══ PERFORMANCE ══════════════════════════════════════ -->
+<link rel="preconnect"      href="https://fonts.googleapis.com">
+<link rel="preconnect"      href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch"    href="https://firestore.googleapis.com">
+<link rel="dns-prefetch"    href="https://www.gstatic.com">
+<link rel="dns-prefetch"    href="https://openrouter.ai">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07040f;--bg2:#0e0720;--bg3:#150b2e;--bg4:#1c1040;
+  --gold:#f5c842;--gold2:#e8a020;--gold3:#fde68a;--gold4:#fff8d6;
+  --rose:#ff6b9d;--teal:#00d4b8;--purple:#8b5cf6;--violet:#c084fc;
+  --green:#22c55e;--red:#ef4444;
+  --txt:#fef3c7;--txt2:#c9a85c;--txt3:#7a6040;
+  --border:rgba(245,200,66,.18);--bh:rgba(245,200,66,.45);
+  --f:'Cairo',sans-serif;--fd:'Amiri',serif;
+  --r:14px;--rs:9px
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--f);background:var(--bg);color:var(--txt);min-height:100vh;overflow-x:hidden;direction:rtl}
+
+/* BG */
+.bg-layer{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg-grd{position:absolute;inset:0;background:
+  radial-gradient(ellipse 65% 50% at 15% 10%,rgba(139,92,246,.2) 0%,transparent 55%),
+  radial-gradient(ellipse 55% 45% at 85% 90%,rgba(245,200,66,.1) 0%,transparent 55%),
+  radial-gradient(ellipse 45% 55% at 55% 45%,rgba(255,107,157,.07) 0%,transparent 60%),
+  linear-gradient(155deg,#07040f 0%,#0e0720 50%,#070410 100%)}
+.stars{position:absolute;inset:0}
+.star{position:absolute;border-radius:50%;background:#fde68a;animation:twk var(--td,3s) var(--tl,0s) infinite}
+@keyframes twk{0%,100%{opacity:.08;transform:scale(1)}50%{opacity:.9;transform:scale(1.9)}}
+.eid-floats{position:absolute;inset:0}
+.ef{position:absolute;animation:flt var(--fd2,8s) var(--fl,0s) ease-in-out infinite alternate;user-select:none}
+@keyframes flt{0%{transform:translateY(0) rotate(var(--r0,0deg))}100%{transform:translateY(-25px) rotate(var(--r1,12deg))}}
+
+/* Geometric overlay */
+.geo{position:absolute;inset:0;opacity:.012;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cpolygon points='50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5' fill='none' stroke='%23f5c842' stroke-width='1'/%3E%3Cpolygon points='50,20 80,35 80,65 50,80 20,65 20,35' fill='none' stroke='%23f5c842' stroke-width='.5'/%3E%3C/svg%3E")}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,4,15,.9);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid var(--border);padding:0 1rem;height:56px;display:flex;align-items:center;justify-content:space-between;gap:.6rem}
+.nav-logo{display:flex;align-items:center;gap:.4rem;text-decoration:none}
+.nli{font-size:1.5rem}
+.nlt{font-family:var(--fd);font-size:1.15rem;color:var(--gold);font-weight:700}
+.nav-actions{display:flex;align-items:center;gap:.4rem}
+.nbtn{display:flex;align-items:center;gap:.28rem;padding:.33rem .65rem;border-radius:var(--rs);border:1px solid var(--border);background:transparent;color:var(--txt2);font-family:var(--f);font-size:.74rem;cursor:pointer;transition:all .2s;white-space:nowrap}
+.nbtn:hover{border-color:var(--gold);color:var(--gold);background:rgba(245,200,66,.06)}
+.nbtn.boost-btn{background:rgba(245,200,66,.05);border-color:rgba(245,200,66,.28);color:var(--gold)}
+.avbtn{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--rose));display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:#1a0800;cursor:pointer;border:2px solid transparent;transition:all .2s;flex-shrink:0}
+.avbtn:hover{border-color:var(--gold);transform:scale(1.08)}
+
+/* MAIN */
+.main{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:1.4rem .85rem 5rem}
+
+/* HERO */
+.hero{text-align:center;padding:1rem 0 1.8rem;animation:up .65s ease both}
+@keyframes up{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
+.moon-row{font-size:2.8rem;display:block;margin-bottom:.5rem;animation:mf 4s ease-in-out infinite}
+@keyframes mf{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-10px) rotate(4deg)}}
+.hero h1{font-family:var(--fd);font-size:clamp(1.8rem,5.5vw,3rem);color:var(--gold);text-shadow:0 0 40px rgba(245,200,66,.45),0 0 80px rgba(245,200,66,.18);line-height:1.2;margin-bottom:.3rem}
+.hero-sub{font-size:clamp(.82rem,2.4vw,1rem);color:var(--txt2);max-width:500px;margin:0 auto .75rem;line-height:1.65}
+.eid-badge{display:inline-flex;align-items:center;gap:.35rem;padding:.35rem 1rem;border-radius:30px;background:linear-gradient(135deg,rgba(245,200,66,.1),rgba(255,107,157,.08));border:1px solid rgba(245,200,66,.28);color:var(--gold3);font-size:.8rem;animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(245,200,66,.25)}50%{box-shadow:0 0 0 8px rgba(245,200,66,0)}}
+
+/* CLOCK BAR */
+.clock-bar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.55rem;margin:1rem 0;animation:up .6s ease .1s both}
+@media(max-width:560px){.clock-bar{grid-template-columns:1fr 1fr}}
+.cbox{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:.8rem .7rem;text-align:center;position:relative;overflow:hidden;transition:border-color .2s}
+.cbox:hover{border-color:var(--bh)}
+.cbox::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),var(--rose),var(--gold),transparent)}
+.cbi{font-size:1.25rem;margin-bottom:.2rem;display:block}
+.cbv{font-size:.95rem;font-weight:700;color:var(--gold);line-height:1.25}
+.time-digits{font-size:1.45rem;font-weight:900;letter-spacing:2px;color:var(--gold);font-variant-numeric:tabular-nums}
+.cbl{font-size:.62rem;color:var(--txt3);margin-top:.12rem;letter-spacing:.3px}
+
+/* COUNTDOWN */
+.cdown{background:var(--bg3);border:1px solid rgba(245,200,66,.22);border-radius:var(--r);padding:1rem .9rem;text-align:center;margin-bottom:1.2rem;position:relative;overflow:hidden;animation:up .6s ease .2s both}
+.cdown::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(245,200,66,.03),rgba(255,107,157,.03));pointer-events:none}
+.cdown-title{font-size:.8rem;color:var(--txt2);margin-bottom:.65rem;display:flex;align-items:center;justify-content:center;gap:.3rem}
+.cd-grid{display:flex;justify-content:center;gap:.45rem;flex-wrap:wrap;align-items:flex-start}
+.cd-unit{background:rgba(245,200,66,.06);border:1px solid rgba(245,200,66,.18);border-radius:9px;padding:.5rem .65rem;min-width:60px;text-align:center}
+.cd-num{font-size:1.75rem;font-weight:900;color:var(--gold);font-variant-numeric:tabular-nums;display:block;line-height:1}
+.cd-lbl{font-size:.6rem;color:var(--txt3);margin-top:.12rem}
+.cd-sep{font-size:1.75rem;color:rgba(245,200,66,.5);font-weight:900;margin-top:.45rem}
+.eid-passed{font-size:1.05rem;color:var(--gold);font-family:var(--fd);padding:.4rem}
+
+/* CARD */
+.card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem 1rem;animation:up .6s ease .12s both}
+.card:hover{border-color:rgba(245,200,66,.26)}
+.ftitle{font-size:.96rem;font-weight:700;color:var(--gold);margin-bottom:.95rem;display:flex;align-items:center;gap:.4rem}
+
+/* FORM */
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+@media(max-width:550px){.fgrid{grid-template-columns:1fr}}
+.fg{display:flex;flex-direction:column;gap:.28rem}
+.fg.fw{grid-column:1/-1}
+label{font-size:.74rem;color:var(--txt2);font-weight:600;letter-spacing:.3px}
+.inp,select,textarea{background:rgba(255,255,255,.035);border:1px solid rgba(245,200,66,.13);border-radius:var(--rs);padding:.55rem .78rem;color:var(--txt);font-family:var(--f);font-size:.86rem;width:100%;outline:none;transition:all .22s;direction:rtl}
+.inp:focus,select:focus,textarea:focus{border-color:var(--gold);background:rgba(245,200,66,.04);box-shadow:0 0 0 3px rgba(245,200,66,.09)}
+select option{background:var(--bg3);color:var(--txt)}
+textarea{resize:vertical;min-height:85px}
+.inp:disabled{opacity:.38;cursor:not-allowed}
+
+.anon-row{display:flex;align-items:center;gap:.4rem;margin-top:.18rem}
+.tsw{position:relative;width:33px;height:17px;flex-shrink:0}
+.tsw input{opacity:0;width:0;height:0}
+.tsl{position:absolute;inset:0;background:rgba(255,255,255,.08);border-radius:20px;cursor:pointer;transition:.28s}
+.tsl::before{content:'';position:absolute;width:11px;height:11px;right:3px;top:3px;background:white;border-radius:50%;transition:.28s}
+.tsw input:checked+.tsl{background:var(--gold)}
+.tsw input:checked+.tsl::before{transform:translateX(-15px)}
+.tlabel{font-size:.71rem;color:var(--txt3);cursor:pointer;user-select:none}
+
+.ai-panel{display:none;padding:.8rem;background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.18);border-radius:var(--rs);gap:.65rem}
+.ai-panel.show{display:grid;grid-template-columns:1fr 1fr}
+@media(max-width:460px){.ai-panel.show{grid-template-columns:1fr}}
+.ai-panel label{color:var(--violet)}
+
+.tchips{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.1rem}
+.tchip{padding:.3rem .68rem;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--txt2);font-family:var(--f);font-size:.72rem;cursor:pointer;transition:all .2s;white-space:nowrap}
+.tchip:hover{border-color:var(--gold);color:var(--gold)}
+.tchip.sel{background:linear-gradient(135deg,rgba(245,200,66,.16),rgba(255,107,157,.1));border-color:var(--gold);color:var(--gold3);font-weight:700}
+.tchip.ai-chip.sel{background:linear-gradient(135deg,rgba(139,92,246,.18),rgba(192,132,252,.12));border-color:var(--purple);color:var(--violet)}
+
+.sbtn{width:100%;padding:.75rem;border-radius:var(--rs);border:none;background:linear-gradient(135deg,#f5c842,#e8a020,#f5c842);background-size:200% 100%;color:#1a0800;font-family:var(--f);font-size:.93rem;font-weight:700;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:.38rem;margin-top:.5rem;animation:shim 3s linear infinite}
+@keyframes shim{0%{background-position:0%}100%{background-position:200%}}
+.sbtn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 28px rgba(245,200,66,.38)}
+.sbtn:active{transform:translateY(0)}
+.sbtn:disabled{opacity:.48;cursor:not-allowed;animation:none}
+.spin{width:15px;height:15px;border:2px solid rgba(0,0,0,.18);border-top-color:#1a0800;border-radius:50%;animation:sp .6s linear infinite;flex-shrink:0}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+/* FEED HEADER */
+.shdr{display:flex;align-items:center;justify-content:space-between;margin:1.5rem 0 .8rem}
+.stitle{font-size:.95rem;font-weight:700;display:flex;align-items:center;gap:.38rem;color:var(--gold3)}
+.sbadge{background:rgba(245,200,66,.1);color:var(--gold);font-size:.67rem;padding:.13rem .42rem;border-radius:20px;border:1px solid rgba(245,200,66,.22)}
+.live-dot{display:flex;align-items:center;gap:.25rem;font-size:.68rem;color:var(--txt3)}
+.ldot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:lp 2s infinite}
+@keyframes lp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.65)}}
+
+/* GREETING CARDS */
+.gfeed{display:flex;flex-direction:column;gap:.7rem}
+.gcard{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:.95rem .9rem;transition:all .25s;animation:cin .4s ease;position:relative;overflow:hidden}
+@keyframes cin{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+.gcard::before{content:'';position:absolute;top:0;right:0;width:3px;height:100%;background:linear-gradient(to bottom,var(--gold),var(--rose),var(--purple))}
+.gcard::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(245,200,66,.18),transparent)}
+.gcard:hover{border-color:rgba(245,200,66,.38);box-shadow:0 4px 28px rgba(245,200,66,.09)}
+
+.ghdr{display:flex;align-items:flex-start;justify-content:space-between;gap:.55rem;margin-bottom:.6rem}
+.gfrom{display:flex;align-items:center;gap:.48rem}
+.gavtr{width:33px;height:33px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--rose));display:flex;align-items:center;justify-content:center;font-size:.76rem;font-weight:700;color:#1a0800;flex-shrink:0}
+.gmeta{display:flex;flex-direction:column;gap:.04rem}
+.gnames{font-size:.8rem;font-weight:600}
+.gnames .arr{color:var(--gold);margin:0 .18rem}
+.gnames .to{color:var(--gold3)}
+.gtime{font-size:.64rem;color:var(--txt3)}
+.gbadge{font-size:.65rem;padding:.15rem .48rem;border-radius:20px;border:1px solid rgba(245,200,66,.32);background:rgba(245,200,66,.07);color:var(--gold);white-space:nowrap;flex-shrink:0}
+
+.gbody{font-family:var(--fd);font-size:.95rem;line-height:1.8;padding:.6rem .75rem;margin-bottom:.65rem;background:rgba(255,255,255,.022);border-radius:var(--rs);border-right:2px solid rgba(245,200,66,.18);white-space:pre-wrap;word-break:break-word;color:var(--txt)}
+.gactions{display:flex;align-items:center;justify-content:space-between;gap:.35rem;flex-wrap:wrap}
+.share-row{display:flex;gap:.26rem;flex-wrap:wrap}
+.shrbtn{display:flex;align-items:center;gap:.2rem;padding:.24rem .5rem;border-radius:6px;border:1px solid rgba(245,200,66,.12);background:transparent;color:var(--txt3);font-family:var(--f);font-size:.66rem;cursor:pointer;transition:all .2s;text-decoration:none}
+.shrbtn:hover{transform:translateY(-1px)}
+.shrbtn.wa:hover{border-color:#25d366;color:#25d366;background:rgba(37,211,102,.05)}
+.shrbtn.tw:hover{border-color:#1da1f2;color:#1da1f2;background:rgba(29,161,242,.05)}
+.shrbtn.fb:hover{border-color:#1877f2;color:#1877f2;background:rgba(24,119,242,.05)}
+.shrbtn.cp:hover{border-color:var(--gold);color:var(--gold);background:rgba(245,200,66,.05)}
+.shrbtn.sh:hover{border-color:var(--violet);color:var(--violet);background:rgba(192,132,252,.05)}
+
+.owner-row{display:flex;gap:.26rem}
+.obtn{padding:.24rem .5rem;border-radius:6px;border:1px solid rgba(245,200,66,.12);background:transparent;font-family:var(--f);font-size:.66rem;cursor:pointer;transition:all .2s;color:var(--txt3)}
+.obtn.ed:hover{border-color:var(--teal);color:var(--teal);background:rgba(0,212,184,.05)}
+.obtn.dl:hover{border-color:var(--red);color:var(--red);background:rgba(239,68,68,.05)}
+
+.vedit{display:none;margin-top:.45rem}
+.vedit.show{display:block}
+.vbody.hide{display:none}
+.edit-btns{display:flex;gap:.3rem;margin-top:.3rem}
+.esbtn{padding:.26rem .56rem;border-radius:6px;border:1px solid var(--teal);background:rgba(0,212,184,.07);color:var(--teal);font-family:var(--f);font-size:.68rem;cursor:pointer}
+.ecbtn{padding:.26rem .56rem;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--txt3);font-family:var(--f);font-size:.68rem;cursor:pointer}
+
+/* BOOST */
+.bfeed{display:flex;flex-direction:column;gap:.48rem}
+.bitem{background:var(--bg3);border:1px solid var(--border);border-radius:var(--rs);padding:.6rem .8rem;display:flex;align-items:center;gap:.55rem}
+.bplaticon{font-size:1.1rem;flex-shrink:0}
+.binfo{flex:1;min-width:0}
+.bwho{font-size:.75rem;font-weight:600}
+.breact{font-size:.65rem;color:var(--txt3);margin-top:.04rem}
+.bgobtn{padding:.26rem .56rem;border-radius:6px;background:rgba(245,200,66,.07);border:1px solid rgba(245,200,66,.28);color:var(--gold);font-size:.68rem;font-family:var(--f);cursor:pointer;text-decoration:none;transition:all .2s;white-space:nowrap}
+.bgobtn:hover{background:rgba(245,200,66,.15)}
+
+/* MODALS */
+.moverlay{position:fixed;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(7px);z-index:200;display:flex;align-items:center;justify-content:center;padding:.7rem;opacity:0;pointer-events:none;transition:opacity .22s}
+.moverlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem 1rem;width:100%;max-width:430px;max-height:88vh;overflow-y:auto;transform:translateY(18px) scale(.97);transition:transform .22s}
+.moverlay.open .modal{transform:translateY(0) scale(1)}
+.mhdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:.95rem}
+.mtitle{font-size:.94rem;font-weight:700;color:var(--gold)}
+.mclose{width:27px;height:27px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--txt2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.82rem;transition:all .2s}
+.mclose:hover{border-color:var(--gold);color:var(--gold)}
+
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:.42rem;margin:.5rem 0}
+.pcard{border:1px solid var(--border);border-radius:var(--rs);padding:.58rem;cursor:pointer;transition:all .2s;text-align:center;background:transparent;color:var(--txt);font-family:var(--f);width:100%}
+.pcard:hover:not(:disabled){border-color:rgba(245,200,66,.38)}
+.pcard.sel{border-color:var(--gold);background:rgba(245,200,66,.06)}
+.pcard:disabled{opacity:.33;cursor:not-allowed}
+.picon{font-size:1.25rem;margin-bottom:.16rem}
+.pname{font-size:.71rem;font-weight:600}
+.pstatus{font-size:.58rem;margin-top:.07rem}
+.av{color:var(--green)}.so{color:var(--txt3)}
+
+.rchips{display:flex;flex-wrap:wrap;gap:.3rem;margin:.3rem 0}
+.rchip{padding:.26rem .56rem;border-radius:20px;border:1px solid var(--border);background:transparent;cursor:pointer;font-size:.71rem;font-family:var(--f);color:var(--txt2);transition:all .2s}
+.rchip:hover{border-color:var(--gold);color:var(--gold)}
+.rchip.sel{background:rgba(245,200,66,.1);border-color:var(--gold);color:var(--gold)}
+
+/* Profile */
+.pinfo{display:flex;align-items:center;gap:.8rem;margin-bottom:.85rem}
+.bigavtr{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--rose));display:flex;align-items:center;justify-content:center;font-size:1.15rem;font-weight:700;color:#1a0800;flex-shrink:0}
+.pnm{font-weight:700;font-size:.9rem}
+.pid{font-size:.65rem;color:var(--txt3);margin-top:.07rem}
+.pstats{display:flex;gap:1.1rem;margin:.75rem 0}
+.pstat{text-align:center}
+.psnum{font-size:1.2rem;font-weight:700;color:var(--gold)}
+.pslbl{font-size:.65rem;color:var(--txt3)}
+.dvdr{height:1px;background:var(--border);margin:.85rem 0}
+
+/* Toast */
+.tcont{position:fixed;bottom:1rem;left:50%;transform:translateX(-50%);z-index:999;display:flex;flex-direction:column;align-items:center;gap:.32rem;pointer-events:none}
+.toast{background:var(--bg3);border:1px solid var(--border);border-radius:var(--rs);padding:.52rem .95rem;font-size:.78rem;color:var(--txt);box-shadow:0 4px 20px rgba(0,0,0,.55);white-space:nowrap;animation:tin .2s ease,tout .2s ease 2.8s forwards;pointer-events:auto}
+.toast.ok{border-color:var(--teal);color:var(--teal)}
+.toast.err{border-color:var(--red);color:var(--red)}
+@keyframes tin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes tout{from{opacity:1}to{opacity:0;transform:translateY(5px)}}
+
+/* Skeleton */
+.skel{background:linear-gradient(90deg,rgba(255,255,255,.03) 0%,rgba(255,255,255,.065) 50%,rgba(255,255,255,.03) 100%);background-size:200% 100%;animation:sh 1.5s infinite;border-radius:var(--rs)}
+@keyframes sh{to{background-position:-200% 0}}
+
+/* Empty */
+.empty{text-align:center;padding:1.8rem 1rem;color:var(--txt3)}
+.eicon{font-size:2rem;margin-bottom:.35rem}
+
+/* Firework */
+@keyframes burst{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(0);opacity:0}}
+.particle{position:fixed;width:7px;height:7px;border-radius:50%;pointer-events:none;z-index:998;animation:burst .85s ease-out forwards}
+
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:rgba(245,200,66,.18);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:rgba(245,200,66,.38)}
+
+@media(max-width:430px){
+  .nav{padding:0 .55rem}
+  .nlt{font-size:.95rem}
+  .nbtn .nbl{display:none}
+  .main{padding:1rem .55rem 3.5rem}
+  .clock-bar{grid-template-columns:1fr 1fr}
+  .clock-bar .cbox:last-child{display:none}
+  .cd-num{font-size:1.45rem}
+  .cd-unit{min-width:50px}
+  .hero h1{font-size:1.75rem}
+}
+
+/* ==================================================
    THEME SYSTEM  (light / dark + bg options)
 ================================================== */
-        body.light {
-            --bg: #f5f0e8;
-            --bg2: #ede6d6;
-            --bg3: #e4dbc8;
-            --bg4: #d9cfb8;
-            --txt: #2d1f00;
-            --txt2: #6b4c00;
-            --txt3: #9a7b40;
-            --border: rgba(160, 110, 20, .22);
-            --bh: rgba(160, 110, 20, .5);
-        }
+body.light {
+  --bg:#f5f0e8;--bg2:#ede6d6;--bg3:#e4dbc8;--bg4:#d9cfb8;
+  --txt:#2d1f00;--txt2:#6b4c00;--txt3:#9a7b40;
+  --border:rgba(160,110,20,.22);--bh:rgba(160,110,20,.5);
+}
+body.bg-stars  .bg-grd { background: radial-gradient(ellipse 65% 50% at 15% 10%,rgba(139,92,246,.22) 0%,transparent 55%),radial-gradient(ellipse 55% 45% at 85% 90%,rgba(245,200,66,.12) 0%,transparent 55%),linear-gradient(155deg,#07040f 0%,#0e0720 50%,#070410 100%); }
+body.bg-emerald .bg-grd { background: radial-gradient(ellipse 65% 50% at 20% 15%,rgba(16,185,129,.2) 0%,transparent 55%),radial-gradient(ellipse 55% 45% at 80% 85%,rgba(245,200,66,.1) 0%,transparent 55%),linear-gradient(155deg,#021a0e 0%,#041f12 50%,#021208 100%); }
+body.bg-navy   .bg-grd { background: radial-gradient(ellipse 65% 50% at 15% 10%,rgba(59,130,246,.22) 0%,transparent 55%),radial-gradient(ellipse 55% 45% at 85% 90%,rgba(245,200,66,.1) 0%,transparent 55%),linear-gradient(155deg,#020b18 0%,#041524 50%,#020a14 100%); }
+body.bg-rose   .bg-grd { background: radial-gradient(ellipse 65% 50% at 15% 10%,rgba(244,63,94,.2) 0%,transparent 55%),radial-gradient(ellipse 55% 45% at 85% 90%,rgba(245,200,66,.1) 0%,transparent 55%),linear-gradient(155deg,#180208 0%,#22040e 50%,#130206 100%); }
+body.bg-gold   .bg-grd { background: radial-gradient(ellipse 65% 50% at 15% 10%,rgba(245,200,66,.18) 0%,transparent 55%),radial-gradient(ellipse 55% 45% at 85% 90%,rgba(251,146,60,.12) 0%,transparent 55%),linear-gradient(155deg,#1a1000 0%,#241600 50%,#160e00 100%); }
+body.light .bg-grd { background: radial-gradient(ellipse 60% 50% at 20% 15%,rgba(245,200,66,.15) 0%,transparent 55%),radial-gradient(ellipse 55% 45% at 80% 85%,rgba(255,107,157,.08) 0%,transparent 55%),linear-gradient(155deg,#f5f0e8 0%,#ede6d6 100%); }
+body.light .star  { background: #c8950a; }
+body.light .cbox,body.light .cdown,body.light .card,body.light .gcard,
+body.light .bitem,body.light .modal { background: var(--bg3); }
 
-        body.bg-stars .bg-grd {
-            background: radial-gradient(ellipse 65% 50% at 15% 10%, rgba(139, 92, 246, .22) 0%, transparent 55%), radial-gradient(ellipse 55% 45% at 85% 90%, rgba(245, 200, 66, .12) 0%, transparent 55%), linear-gradient(155deg, #07040f 0%, #0e0720 50%, #070410 100%);
-        }
+/* Theme panel button */
+.theme-btn {
+  display:flex;align-items:center;gap:.28rem;padding:.33rem .65rem;
+  border-radius:var(--rs);border:1px solid var(--border);background:transparent;
+  color:var(--txt2);font-family:var(--f);font-size:.74rem;cursor:pointer;transition:all .2s;
+}
+.theme-btn:hover { border-color:var(--gold);color:var(--gold); }
 
-        body.bg-emerald .bg-grd {
-            background: radial-gradient(ellipse 65% 50% at 20% 15%, rgba(16, 185, 129, .2) 0%, transparent 55%), radial-gradient(ellipse 55% 45% at 80% 85%, rgba(245, 200, 66, .1) 0%, transparent 55%), linear-gradient(155deg, #021a0e 0%, #041f12 50%, #021208 100%);
-        }
+/* Theme panel modal */
+.tp-section { margin-bottom:1rem; }
+.tp-label { font-size:.72rem;font-weight:700;color:var(--txt2);margin-bottom:.5rem;letter-spacing:.4px; }
+.tp-row { display:flex;flex-wrap:wrap;gap:.4rem; }
+.bg-swatch {
+  width:36px;height:36px;border-radius:8px;cursor:pointer;border:2px solid transparent;
+  transition:all .2s;position:relative;
+}
+.bg-swatch.sel { border-color:var(--gold);transform:scale(1.1); }
+.bg-swatch.sel::after { content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:white;font-weight:700; }
+.mode-chips { display:flex;gap:.4rem; }
+.mode-chip {
+  flex:1;padding:.42rem;border-radius:var(--rs);border:1px solid var(--border);
+  background:transparent;cursor:pointer;font-family:var(--f);font-size:.75rem;
+  color:var(--txt2);transition:all .2s;text-align:center;
+}
+.mode-chip:hover { border-color:var(--gold);color:var(--gold); }
+.mode-chip.sel { background:rgba(245,200,66,.1);border-color:var(--gold);color:var(--gold);font-weight:700; }
 
-        body.bg-navy .bg-grd {
-            background: radial-gradient(ellipse 65% 50% at 15% 10%, rgba(59, 130, 246, .22) 0%, transparent 55%), radial-gradient(ellipse 55% 45% at 85% 90%, rgba(245, 200, 66, .1) 0%, transparent 55%), linear-gradient(155deg, #020b18 0%, #041524 50%, #020a14 100%);
-        }
-
-        body.bg-rose .bg-grd {
-            background: radial-gradient(ellipse 65% 50% at 15% 10%, rgba(244, 63, 94, .2) 0%, transparent 55%), radial-gradient(ellipse 55% 45% at 85% 90%, rgba(245, 200, 66, .1) 0%, transparent 55%), linear-gradient(155deg, #180208 0%, #22040e 50%, #130206 100%);
-        }
-
-        body.bg-gold .bg-grd {
-            background: radial-gradient(ellipse 65% 50% at 15% 10%, rgba(245, 200, 66, .18) 0%, transparent 55%), radial-gradient(ellipse 55% 45% at 85% 90%, rgba(251, 146, 60, .12) 0%, transparent 55%), linear-gradient(155deg, #1a1000 0%, #241600 50%, #160e00 100%);
-        }
-
-        body.light .bg-grd {
-            background: radial-gradient(ellipse 60% 50% at 20% 15%, rgba(245, 200, 66, .15) 0%, transparent 55%), radial-gradient(ellipse 55% 45% at 80% 85%, rgba(255, 107, 157, .08) 0%, transparent 55%), linear-gradient(155deg, #f5f0e8 0%, #ede6d6 100%);
-        }
-
-        body.light .star {
-            background: #c8950a;
-        }
-
-        body.light .cbox,
-        body.light .cdown,
-        body.light .card,
-        body.light .gcard,
-        body.light .bitem,
-        body.light .modal {
-            background: var(--bg3);
-        }
-
-        /* Theme panel button */
-        .theme-btn {
-            display: flex;
-            align-items: center;
-            gap: .28rem;
-            padding: .33rem .65rem;
-            border-radius: var(--rs);
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--txt2);
-            font-family: var(--f);
-            font-size: .74rem;
-            cursor: pointer;
-            transition: all .2s;
-        }
-
-        .theme-btn:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-        }
-
-        /* Theme panel modal */
-        .tp-section {
-            margin-bottom: 1rem;
-        }
-
-        .tp-label {
-            font-size: .72rem;
-            font-weight: 700;
-            color: var(--txt2);
-            margin-bottom: .5rem;
-            letter-spacing: .4px;
-        }
-
-        .tp-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: .4rem;
-        }
-
-        .bg-swatch {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: all .2s;
-            position: relative;
-        }
-
-        .bg-swatch.sel {
-            border-color: var(--gold);
-            transform: scale(1.1);
-        }
-
-        .bg-swatch.sel::after {
-            content: '✓';
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: .65rem;
-            color: white;
-            font-weight: 700;
-        }
-
-        .mode-chips {
-            display: flex;
-            gap: .4rem;
-        }
-
-        .mode-chip {
-            flex: 1;
-            padding: .42rem;
-            border-radius: var(--rs);
-            border: 1px solid var(--border);
-            background: transparent;
-            cursor: pointer;
-            font-family: var(--f);
-            font-size: .75rem;
-            color: var(--txt2);
-            transition: all .2s;
-            text-align: center;
-        }
-
-        .mode-chip:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-        }
-
-        .mode-chip.sel {
-            background: rgba(245, 200, 66, .1);
-            border-color: var(--gold);
-            color: var(--gold);
-            font-weight: 700;
-        }
-
-        /* ==================================================
+/* ==================================================
    ADS
 ================================================== */
-        .ad-slot {
-            width: 100%;
-            min-height: 90px;
-            border-radius: var(--r);
-            overflow: hidden;
-            border: 1px dashed rgba(245, 200, 66, .15);
-            background: rgba(245, 200, 66, .02);
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 1rem 0;
-        }
+.ad-slot {
+  width:100%;min-height:90px;border-radius:var(--r);overflow:hidden;
+  border:1px dashed rgba(245,200,66,.15);background:rgba(245,200,66,.02);
+  position:relative;display:flex;align-items:center;justify-content:center;
+  margin:1rem 0;
+}
+.ad-slot.hidden { display:none; }
+.ad-inner { width:100%;text-align:center; }
+.ad-close {
+  position:absolute;top:4px;left:6px;width:20px;height:20px;border-radius:50%;
+  background:rgba(0,0,0,.4);border:none;color:rgba(255,255,255,.7);font-size:.65rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;
+  transition:all .2s;line-height:1;
+}
+.ad-close:hover { background:rgba(239,68,68,.7);color:white; }
+.ad-label {
+  font-size:.58rem;color:var(--txt3);letter-spacing:.4px;
+  position:absolute;bottom:3px;left:50%;transform:translateX(-50%);
+  white-space:nowrap;opacity:.5;
+}
 
-        .ad-slot.hidden {
-            display: none;
-        }
+/* Popup ad */
+.adpop-overlay {
+  position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(6px);
+  z-index:500;display:flex;align-items:center;justify-content:center;padding:.75rem;
+  opacity:0;pointer-events:none;transition:opacity .28s;
+}
+.adpop-overlay.open { opacity:1;pointer-events:all; }
+.adpop-box {
+  background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);
+  width:100%;max-width:360px;overflow:hidden;
+  transform:translateY(20px) scale(.96);transition:transform .28s;
+}
+.adpop-overlay.open .adpop-box { transform:translateY(0) scale(1); }
+.adpop-hdr {
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.55rem .75rem;border-bottom:1px solid var(--border);
+}
+.adpop-title { font-size:.74rem;color:var(--txt3);letter-spacing:.3px; }
+.adpop-close {
+  width:24px;height:24px;border-radius:50%;border:1px solid var(--border);
+  background:transparent;color:var(--txt2);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:.78rem;
+  transition:all .2s;
+}
+.adpop-close:hover { border-color:var(--gold);color:var(--gold); }
+.adpop-body { padding:.85rem .75rem;min-height:120px;display:flex;align-items:center;justify-content:center; }
+.adpop-footer { padding:.45rem .75rem;text-align:center;font-size:.62rem;color:var(--txt3);border-top:1px solid var(--border); }
 
-        .ad-inner {
-            width: 100%;
-            text-align: center;
-        }
-
-        .ad-close {
-            position: absolute;
-            top: 4px;
-            left: 6px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, .4);
-            border: none;
-            color: rgba(255, 255, 255, .7);
-            font-size: .65rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-            transition: all .2s;
-            line-height: 1;
-        }
-
-        .ad-close:hover {
-            background: rgba(239, 68, 68, .7);
-            color: white;
-        }
-
-        .ad-label {
-            font-size: .58rem;
-            color: var(--txt3);
-            letter-spacing: .4px;
-            position: absolute;
-            bottom: 3px;
-            left: 50%;
-            transform: translateX(-50%);
-            white-space: nowrap;
-            opacity: .5;
-        }
-
-        /* Popup ad */
-        .adpop-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, .72);
-            backdrop-filter: blur(6px);
-            z-index: 500;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: .75rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity .28s;
-        }
-
-        .adpop-overlay.open {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .adpop-box {
-            background: var(--bg2);
-            border: 1px solid var(--border);
-            border-radius: var(--r);
-            width: 100%;
-            max-width: 360px;
-            overflow: hidden;
-            transform: translateY(20px) scale(.96);
-            transition: transform .28s;
-        }
-
-        .adpop-overlay.open .adpop-box {
-            transform: translateY(0) scale(1);
-        }
-
-        .adpop-hdr {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: .55rem .75rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .adpop-title {
-            font-size: .74rem;
-            color: var(--txt3);
-            letter-spacing: .3px;
-        }
-
-        .adpop-close {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--txt2);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: .78rem;
-            transition: all .2s;
-        }
-
-        .adpop-close:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-        }
-
-        .adpop-body {
-            padding: .85rem .75rem;
-            min-height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .adpop-footer {
-            padding: .45rem .75rem;
-            text-align: center;
-            font-size: .62rem;
-            color: var(--txt3);
-            border-top: 1px solid var(--border);
-        }
-    </style>
+</style>
 </head>
-
 <body>
 
-    <div class="bg-layer">
-        <div class="bg-grd"></div>
-        <div class="geo"></div>
-        <div class="stars" id="starsWrap"></div>
-        <div class="eid-floats" id="eidFloats"></div>
+<div class="bg-layer">
+  <div class="bg-grd"></div>
+  <div class="geo"></div>
+  <div class="stars" id="starsWrap"></div>
+  <div class="eid-floats" id="eidFloats"></div>
+</div>
+
+<div class="tcont" id="tc"></div>
+
+<nav class="nav">
+  <a href="#" class="nav-logo">
+    <span class="nli">🌙</span>
+    <span class="nlt">عيد مبارك</span>
+  </a>
+  <div class="nav-actions">
+    <button class="theme-btn" onclick="openModal('themeM')" title="تغيير المظهر">🎨 <span class="nbl">المظهر</span></button>
+    <button class="nbtn boost-btn" onclick="openModal('boostM')">🚀 <span class="nbl">رفع التفاعل</span></button>
+    <div class="avbtn" id="avBtn" onclick="openModal('profileM')">؟</div>
+  </div>
+</nav>
+
+<main class="main">
+
+  <div class="hero">
+    <span class="moon-row">🌙 ✨ 🕌 ✨ 🌙</span>
+    <h1>عيد الفطر المبارك</h1>
+    <p class="hero-sub">أرسل تهنئتك لأحبائك بمناسبة عيد الفطر المبارك 🌙<br>دع الذكاء الاصطناعي يكتب لك معايدة بلغتك ولهجتك</p>
+    <span class="eid-badge">🎉 تقبل الله منا ومنكم صالح الأعمال</span>
+  </div>
+
+  <!-- CLOCK BAR -->
+  <div class="clock-bar">
+    <div class="cbox">
+      <span class="cbi">⏰</span>
+      <div class="time-digits" id="clkTime">--:--:--</div>
+      <div class="cbl">الوقت الحالي</div>
     </div>
-
-    <div class="tcont" id="tc"></div>
-
-    <nav class="nav">
-        <a href="#" class="nav-logo">
-            <span class="nli">🌙</span>
-            <span class="nlt">عيد مبارك</span>
-        </a>
-        <div class="nav-actions">
-            <button class="theme-btn" onclick="openModal('themeM')" title="تغيير المظهر">🎨 <span
-                    class="nbl">المظهر</span></button>
-            <button class="nbtn boost-btn" onclick="openModal('boostM')">🚀 <span class="nbl">رفع
-                    التفاعل</span></button>
-            <div class="avbtn" id="avBtn" onclick="openModal('profileM')">؟</div>
-        </div>
-    </nav>
-
-    <main class="main">
-
-        <div class="hero">
-            <span class="moon-row">🌙 ✨ 🕌 ✨ 🌙</span>
-            <h1>عيد الفطر المبارك</h1>
-            <p class="hero-sub">أرسل تهنئتك لأحبائك بمناسبة عيد الفطر المبارك 🌙<br>دع الذكاء الاصطناعي يكتب لك معايدة
-                بلغتك ولهجتك</p>
-            <span class="eid-badge">🎉 تقبل الله منا ومنكم صالح الأعمال</span>
-        </div>
-
-        <!-- CLOCK BAR -->
-        <div class="clock-bar">
-            <div class="cbox">
-                <span class="cbi">⏰</span>
-                <div class="time-digits" id="clkTime">--:--:--</div>
-                <div class="cbl">الوقت الحالي</div>
-            </div>
-            <div class="cbox">
-                <span class="cbi">📅</span>
-                <div class="cbv" id="clkGreg">--</div>
-                <div class="cbl">التاريخ الميلادي</div>
-            </div>
-            <div class="cbox">
-                <span class="cbi">☪️</span>
-                <div class="cbv" id="clkHijri">--</div>
-                <div class="cbl">التاريخ الهجري</div>
-            </div>
-        </div>
-
-        <!-- COUNTDOWN -->
-        <div class="cdown">
-            <div class="cdown-title">⏳ الوقت المتبقي لعيد الفطر المبارك 🌙</div>
-            <div class="cd-grid" id="cdGrid">
-                <div class="cd-unit"><span class="cd-num" id="cdD">--</span>
-                    <div class="cd-lbl">يوم</div>
-                </div>
-                <span class="cd-sep">:</span>
-                <div class="cd-unit"><span class="cd-num" id="cdH">--</span>
-                    <div class="cd-lbl">ساعة</div>
-                </div>
-                <span class="cd-sep">:</span>
-                <div class="cd-unit"><span class="cd-num" id="cdM">--</span>
-                    <div class="cd-lbl">دقيقة</div>
-                </div>
-                <span class="cd-sep">:</span>
-                <div class="cd-unit"><span class="cd-num" id="cdS">--</span>
-                    <div class="cd-lbl">ثانية</div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- AD SLOT 1 -->
-        <div class="ad-slot" id="adSlot1">
-            <button class="ad-close" onclick="closeAd('adSlot1')" title="إغلاق الإعلان">✕</button>
-            <div class="ad-inner" id="adInner1">
-                <!-- ضع هنا كود إعلان addstaera -->
-            </div>
-            <span class="ad-label">إعلان</span>
-        </div>
-
-        <!-- FORM -->
-        <div class="card">
-            <div class="ftitle">✍️ أرسل معايدة العيد</div>
-            <div class="fgrid">
-
-                <div class="fg">
-                    <label>اسمك</label>
-                    <input type="text" class="inp" id="sname" placeholder="اكتب اسمك..." maxlength="40">
-                    <div class="anon-row">
-                        <label class="tsw"><input type="checkbox" id="anonCk" onchange="toggleAnon()"><span
-                                class="tsl"></span></label>
-                        <span class="tlabel" onclick="document.getElementById('anonCk').click()">إرسال كمجهول 🕵️</span>
-                    </div>
-                </div>
-
-                <div class="fg">
-                    <label>إلى من تُعايد؟</label>
-                    <select class="inp" id="rsel" onchange="onRsel()">
-                        <option value="">— اختر الصلة —</option>
-                        <optgroup label="الأسرة">
-                            <option>أمي</option>
-                            <option>أبي</option>
-                            <option>أخي</option>
-                            <option>أختي</option>
-                            <option>ابني</option>
-                            <option>ابنتي</option>
-                            <option>زوجتي</option>
-                            <option>زوجي</option>
-                            <option>جدي</option>
-                            <option>جدتي</option>
-                            <option>عمي</option>
-                            <option>عمتي</option>
-                            <option>خالي</option>
-                            <option>خالتي</option>
-                        </optgroup>
-                        <optgroup label="الأصدقاء والزملاء">
-                            <option>صديقي</option>
-                            <option>صديقتي</option>
-                            <option>حبيبي</option>
-                            <option>حبيبتي</option>
-                            <option>زميلي</option>
-                            <option>زميلتي</option>
-                        </optgroup>
-                        <option value="custom">✏️ اكتب مخصص...</option>
-                    </select>
-                    <input type="text" class="inp" id="rcustom" placeholder="اكتب الصلة أو اللقب..." maxlength="40"
-                        style="display:none;margin-top:.3rem">
-                </div>
-
-                <div class="fg">
-                    <label>اسم الشخص (اختياري)</label>
-                    <input type="text" class="inp" id="rname" placeholder="مثال: أحمد، سارة..." maxlength="40">
-                </div>
-
-                <div class="fg">
-                    <label>نوع المعايدة</label>
-                    <div class="tchips">
-                        <button class="tchip" data-t="warm" onclick="selType(this)">❤️ دافئة عاطفية</button>
-                        <button class="tchip" data-t="formal" onclick="selType(this)">🌙 رسمية فصيحة</button>
-                        <button class="tchip" data-t="funny" onclick="selType(this)">😄 مرحة خفيفة</button>
-                        <button class="tchip" data-t="kids" onclick="selType(this)">🎁 للأطفال</button>
-                        <button class="tchip" data-t="short" onclick="selType(this)">⚡ مختصرة</button>
-                        <button class="tchip ai-chip" data-t="ai" onclick="selType(this)">🤖 ذكاء اصطناعي</button>
-                    </div>
-                </div>
-
-                <div class="fg fw">
-                    <div class="ai-panel" id="aiPanel">
-                        <div class="fg">
-                            <label>اللغة / اللهجة</label>
-                            <select class="inp" id="aiLang">
-                                <option>عربي فصيح</option>
-                                <option>لهجة مصرية</option>
-                                <option>لهجة سعودية</option>
-                                <option>لهجة شامية</option>
-                                <option>لهجة خليجية</option>
-                                <option>لهجة مغربية</option>
-                                <option>لهجة عراقية</option>
-                                <option>English</option>
-                            </select>
-                        </div>
-                        <div class="fg">
-                            <label>تفاصيل إضافية</label>
-                            <input type="text" class="inp" id="aiExtra"
-                                placeholder="مثال: أمي المسافرة، صديقي القديم...">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="fg fw" id="msgFg">
-                    <label>نص المعايدة</label>
-                    <textarea class="inp" id="gmsg" rows="4" placeholder="اكتب معايدتك لعيد الفطر هنا..."></textarea>
-                </div>
-
-            </div>
-            <button class="sbtn" id="sbtn" onclick="submitGreeting()">
-                <span id="sbtnTxt">🌙 أرسل المعايدة</span>
-            </button>
-        </div>
-
-        <!-- GREETINGS FEED -->
-        <div class="shdr">
-            <div class="stitle">💌 معايدات الجميع <span class="sbadge" id="gcnt">0</span></div>
-            <div class="live-dot">
-                <div class="ldot"></div> مباشر
-            </div>
-        </div>
-        <div class="gfeed" id="gfeed">
-            <div class="gcard">
-                <div class="skel" style="height:15px;width:55%;margin-bottom:.45rem"></div>
-                <div class="skel" style="height:68px;margin-bottom:.4rem"></div>
-                <div class="skel" style="height:12px;width:38%"></div>
-            </div>
-            <div class="gcard">
-                <div class="skel" style="height:15px;width:45%;margin-bottom:.45rem"></div>
-                <div class="skel" style="height:58px;margin-bottom:.4rem"></div>
-                <div class="skel" style="height:12px;width:32%"></div>
-            </div>
-        </div>
-
-        <!-- BOOST FEED -->
-
-        <!-- AD SLOT 2 -->
-        <div class="ad-slot" id="adSlot2">
-            <button class="ad-close" onclick="closeAd('adSlot2')" title="إغلاق الإعلان">✕</button>
-            <div class="ad-inner" id="adInner2">
-                <!-- ضع هنا كود إعلان addstaera -->
-            </div>
-            <span class="ad-label">إعلان</span>
-        </div>
-
-        <div class="dvdr" style="margin:1.5rem 0"></div>
-        <div class="shdr">
-            <div class="stitle">🚀 طلبات رفع التفاعل</div>
-            <button class="nbtn" onclick="openModal('boostM')" style="font-size:.71rem">+ إضافة</button>
-        </div>
-        <div class="bfeed" id="bfeed">
-            <div class="empty">
-                <div class="eicon">🚀</div>
-                <p>لا توجد طلبات حتى الآن</p>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- PROFILE MODAL -->
-    <div class="moverlay" id="profileM" onclick="bgClose(event,'profileM')">
-        <div class="modal">
-            <div class="mhdr"><span class="mtitle">👤 ملفي الشخصي</span><button class="mclose"
-                    onclick="closeModal('profileM')">✕</button></div>
-            <div class="pinfo">
-                <div class="bigavtr" id="bigAvtr">؟</div>
-                <div>
-                    <div class="pnm" id="pnDisp">زائر</div>
-                    <div class="pid" id="pidDisp">ID: …</div>
-                </div>
-            </div>
-            <div class="pstats">
-                <div class="pstat">
-                    <div class="psnum" id="stG">0</div>
-                    <div class="pslbl">معايدات أرسلتها</div>
-                </div>
-                <div class="pstat">
-                    <div class="psnum" id="stB">0</div>
-                    <div class="pslbl">طلبات تفاعل</div>
-                </div>
-            </div>
-            <div class="dvdr"></div>
-            <div class="fg" style="margin-bottom:.65rem">
-                <label>اسمك في الموقع</label>
-                <input type="text" class="inp" id="pnInput" placeholder="اكتب اسمك..." maxlength="40">
-            </div>
-            <button class="sbtn" onclick="saveProfile()">💾 حفظ الملف الشخصي</button>
-        </div>
+    <div class="cbox">
+      <span class="cbi">📅</span>
+      <div class="cbv" id="clkGreg">--</div>
+      <div class="cbl">التاريخ الميلادي</div>
     </div>
-
-    <!-- BOOST MODAL -->
-    <div class="moverlay" id="boostM" onclick="bgClose(event,'boostM')">
-        <div class="modal">
-            <div class="mhdr"><span class="mtitle">🚀 رفع التفاعل على منشورك</span><button class="mclose"
-                    onclick="closeModal('boostM')">✕</button></div>
-            <div
-                style="font-size:.74rem;color:var(--txt2);line-height:1.6;padding:.45rem .58rem;background:rgba(245,200,66,.04);border:1px solid rgba(245,200,66,.14);border-radius:var(--rs);margin-bottom:.8rem">
-                ⚠️ تأكد أن <strong>منشورك عام</strong> وأن <strong>حسابك عام</strong> حتى يتمكن الآخرون من التفاعل
-            </div>
-            <div class="fg">
-                <label>اختر المنصة</label>
-                <div class="pgrid">
-                    <button class="pcard" onclick="selPlatform(this,'facebook')">
-                        <div class="picon">📘</div>
-                        <div class="pname">Facebook</div>
-                        <div class="pstatus av">✅ متاح</div>
-                    </button>
-                    <button class="pcard" onclick="selPlatform(this,'instagram')">
-                        <div class="picon">📸</div>
-                        <div class="pname">Instagram</div>
-                        <div class="pstatus av">✅ متاح</div>
-                    </button>
-                    <button class="pcard" disabled>
-                        <div class="picon">𝕏</div>
-                        <div class="pname">Twitter/X</div>
-                        <div class="pstatus so">🔜 قريباً</div>
-                    </button>
-                    <button class="pcard" disabled>
-                        <div class="picon">🎵</div>
-                        <div class="pname">TikTok</div>
-                        <div class="pstatus so">🔜 قريباً</div>
-                    </button>
-                    <button class="pcard" disabled>
-                        <div class="picon">▶️</div>
-                        <div class="pname">YouTube</div>
-                        <div class="pstatus so">🔜 قريباً</div>
-                    </button>
-                    <button class="pcard" disabled>
-                        <div class="picon">💼</div>
-                        <div class="pname">LinkedIn</div>
-                        <div class="pstatus so">🔜 قريباً</div>
-                    </button>
-                </div>
-            </div>
-            <div id="boostExtras" style="display:none">
-                <div class="fg" style="margin-bottom:.62rem">
-                    <label>رابط المنشور</label>
-                    <input type="url" class="inp" id="bUrl" placeholder="https://…" dir="ltr">
-                </div>
-                <div class="fg" style="margin-bottom:.62rem">
-                    <label>نوع التفاعل المطلوب</label>
-                    <div class="rchips" id="rchips"></div>
-                </div>
-                <button class="sbtn" onclick="submitBoost()">🚀 نشر الطلب</button>
-            </div>
-        </div>
+    <div class="cbox">
+      <span class="cbi">☪️</span>
+      <div class="cbv" id="clkHijri">--</div>
+      <div class="cbl">التاريخ الهجري</div>
     </div>
+  </div>
 
-
-    <!-- POPUP AD (appears after 60s) -->
-    <div class="adpop-overlay" id="adPopM">
-        <div class="adpop-box">
-            <div class="adpop-hdr">
-                <span class="adpop-title">إعلان مدعوم</span>
-                <button class="adpop-close" onclick="closeModal('adPopM')">✕</button>
-            </div>
-            <div class="adpop-body" id="adPopBody">
-                <!-- ضع هنا كود إعلان addstaera للبوب-أب -->
-            </div>
-            <div class="adpop-footer">يمكنك إغلاق هذا الإعلان</div>
-        </div>
+  <!-- COUNTDOWN -->
+  <div class="cdown">
+    <div class="cdown-title">⏳ الوقت المتبقي لعيد الفطر المبارك 🌙</div>
+    <div class="cd-grid" id="cdGrid">
+      <div class="cd-unit"><span class="cd-num" id="cdD">--</span><div class="cd-lbl">يوم</div></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-num" id="cdH">--</span><div class="cd-lbl">ساعة</div></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-num" id="cdM">--</span><div class="cd-lbl">دقيقة</div></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-num" id="cdS">--</span><div class="cd-lbl">ثانية</div></div>
     </div>
+  </div>
 
-    <!-- THEME MODAL -->
-    <div class="moverlay" id="themeM" onclick="bgClose(event,'themeM')">
-        <div class="modal">
-            <div class="mhdr">
-                <span class="mtitle">🎨 تخصيص المظهر</span>
-                <button class="mclose" onclick="closeModal('themeM')">✕</button>
-            </div>
-            <div class="tp-section">
-                <div class="tp-label">الوضع</div>
-                <div class="mode-chips">
-                    <button class="mode-chip" id="mDark" onclick="setMode('dark')">🌙 داكن</button>
-                    <button class="mode-chip" id="mLight" onclick="setMode('light')">☀️ فاتح</button>
-                </div>
-            </div>
-            <div class="tp-section">
-                <div class="tp-label">لون الخلفية</div>
-                <div class="tp-row" id="bgSwatches">
-                    <div class="bg-swatch" data-bg="bg-stars" style="background:linear-gradient(135deg,#0e0720,#8b5cf6)"
-                        title="بنفسجي نجوم" onclick="setBg('bg-stars')"></div>
-                    <div class="bg-swatch" data-bg="bg-emerald"
-                        style="background:linear-gradient(135deg,#021a0e,#10b981)" title="أخضر زمردي"
-                        onclick="setBg('bg-emerald')"></div>
-                    <div class="bg-swatch" data-bg="bg-navy" style="background:linear-gradient(135deg,#020b18,#3b82f6)"
-                        title="أزرق نيلي" onclick="setBg('bg-navy')"></div>
-                    <div class="bg-swatch" data-bg="bg-rose" style="background:linear-gradient(135deg,#180208,#f43f5e)"
-                        title="وردي أحمر" onclick="setBg('bg-rose')"></div>
-                    <div class="bg-swatch" data-bg="bg-gold" style="background:linear-gradient(135deg,#1a1000,#f5c842)"
-                        title="ذهبي دافئ" onclick="setBg('bg-gold')"></div>
-                </div>
-            </div>
-            <button class="sbtn" onclick="closeModal('themeM')">✓ تطبيق</button>
-        </div>
+
+  <!-- AD SLOT 1 -->
+  <div class="ad-slot" id="adSlot1">
+    <button class="ad-close" onclick="closeAd('adSlot1')" title="إغلاق الإعلان">✕</button>
+    <div class="ad-inner" id="adInner1">
+      <!-- ضع هنا كود إعلان addstaera -->
     </div>
+    <span class="ad-label">إعلان</span>
+  </div>
 
-    <script>
-        /* ==================================================
-           THEME  — bg + mode
-        ================================================== */
-        var CUR_BG = localStorage.getItem("_eid_bg") || "bg-stars";
-        var CUR_MODE = localStorage.getItem("_eid_mode") || "dark";
+  <!-- FORM -->
+  <div class="card">
+    <div class="ftitle">✍️ أرسل معايدة العيد</div>
+    <div class="fgrid">
 
-        function applyTheme() {
-            var body = document.body;
-            // remove all bg classes
-            ["bg-stars", "bg-emerald", "bg-navy", "bg-rose", "bg-gold"].forEach(function (c) {
-                body.classList.remove(c);
-            });
-            body.classList.remove("light");
-            body.classList.add(CUR_BG);
-            if (CUR_MODE === "light") body.classList.add("light");
+      <div class="fg">
+        <label>اسمك</label>
+        <input type="text" class="inp" id="sname" placeholder="اكتب اسمك..." maxlength="40">
+        <div class="anon-row">
+          <label class="tsw"><input type="checkbox" id="anonCk" onchange="toggleAnon()"><span class="tsl"></span></label>
+          <span class="tlabel" onclick="document.getElementById('anonCk').click()">إرسال كمجهول 🕵️</span>
+        </div>
+      </div>
 
-            // update swatch selected state
-            document.querySelectorAll(".bg-swatch").forEach(function (el) {
-                el.classList.toggle("sel", el.dataset.bg === CUR_BG);
-            });
-            // update mode chip selected
-            var md = document.getElementById("mDark");
-            var ml = document.getElementById("mLight");
-            if (md) md.classList.toggle("sel", CUR_MODE === "dark");
-            if (ml) ml.classList.toggle("sel", CUR_MODE === "light");
+      <div class="fg">
+        <label>إلى من تُعايد؟</label>
+        <select class="inp" id="rsel" onchange="onRsel()">
+          <option value="">— اختر الصلة —</option>
+          <optgroup label="الأسرة">
+            <option>أمي</option><option>أبي</option><option>أخي</option><option>أختي</option>
+            <option>ابني</option><option>ابنتي</option><option>زوجتي</option><option>زوجي</option>
+            <option>جدي</option><option>جدتي</option><option>عمي</option><option>عمتي</option>
+            <option>خالي</option><option>خالتي</option>
+          </optgroup>
+          <optgroup label="الأصدقاء والزملاء">
+            <option>صديقي</option><option>صديقتي</option><option>حبيبي</option>
+            <option>حبيبتي</option><option>زميلي</option><option>زميلتي</option>
+          </optgroup>
+          <option value="custom">✏️ اكتب مخصص...</option>
+        </select>
+        <input type="text" class="inp" id="rcustom" placeholder="اكتب الصلة أو اللقب..." maxlength="40" style="display:none;margin-top:.3rem">
+      </div>
+
+      <div class="fg">
+        <label>اسم الشخص (اختياري)</label>
+        <input type="text" class="inp" id="rname" placeholder="مثال: أحمد، سارة..." maxlength="40">
+      </div>
+
+      <div class="fg">
+        <label>نوع المعايدة</label>
+        <div class="tchips">
+          <button class="tchip" data-t="warm"   onclick="selType(this)">❤️ دافئة عاطفية</button>
+          <button class="tchip" data-t="formal" onclick="selType(this)">🌙 رسمية فصيحة</button>
+          <button class="tchip" data-t="funny"  onclick="selType(this)">😄 مرحة خفيفة</button>
+          <button class="tchip" data-t="kids"   onclick="selType(this)">🎁 للأطفال</button>
+          <button class="tchip" data-t="short"  onclick="selType(this)">⚡ مختصرة</button>
+          <button class="tchip ai-chip" data-t="ai" onclick="selType(this)">🤖 ذكاء اصطناعي</button>
+        </div>
+      </div>
+
+      <div class="fg fw">
+        <div class="ai-panel" id="aiPanel">
+          <div class="fg">
+            <label>اللغة / اللهجة</label>
+            <select class="inp" id="aiLang">
+              <option>عربي فصيح</option><option>لهجة مصرية</option>
+              <option>لهجة سعودية</option><option>لهجة شامية</option>
+              <option>لهجة خليجية</option><option>لهجة مغربية</option>
+              <option>لهجة عراقية</option><option>English</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>تفاصيل إضافية</label>
+            <input type="text" class="inp" id="aiExtra" placeholder="مثال: أمي المسافرة، صديقي القديم...">
+          </div>
+        </div>
+      </div>
+
+      <div class="fg fw" id="msgFg">
+        <label>نص المعايدة</label>
+        <textarea class="inp" id="gmsg" rows="4" placeholder="اكتب معايدتك لعيد الفطر هنا..."></textarea>
+      </div>
+
+    </div>
+    <button class="sbtn" id="sbtn" onclick="submitGreeting()">
+      <span id="sbtnTxt">🌙 أرسل المعايدة</span>
+    </button>
+  </div>
+
+  <!-- GREETINGS FEED -->
+  <div class="shdr">
+    <div class="stitle">💌 معايدات الجميع <span class="sbadge" id="gcnt">0</span></div>
+    <div class="live-dot"><div class="ldot"></div> مباشر</div>
+  </div>
+  <div class="gfeed" id="gfeed">
+    <div class="gcard"><div class="skel" style="height:15px;width:55%;margin-bottom:.45rem"></div><div class="skel" style="height:68px;margin-bottom:.4rem"></div><div class="skel" style="height:12px;width:38%"></div></div>
+    <div class="gcard"><div class="skel" style="height:15px;width:45%;margin-bottom:.45rem"></div><div class="skel" style="height:58px;margin-bottom:.4rem"></div><div class="skel" style="height:12px;width:32%"></div></div>
+  </div>
+
+  <!-- BOOST FEED -->
+
+  <!-- AD SLOT 2 -->
+  <div class="ad-slot" id="adSlot2">
+    <button class="ad-close" onclick="closeAd('adSlot2')" title="إغلاق الإعلان">✕</button>
+    <div class="ad-inner" id="adInner2">
+      <!-- ضع هنا كود إعلان addstaera -->
+    </div>
+    <span class="ad-label">إعلان</span>
+  </div>
+
+  <div class="dvdr" style="margin:1.5rem 0"></div>
+  <div class="shdr">
+    <div class="stitle">🚀 طلبات رفع التفاعل</div>
+    <button class="nbtn" onclick="openModal('boostM')" style="font-size:.71rem">+ إضافة</button>
+  </div>
+  <div class="bfeed" id="bfeed">
+    <div class="empty"><div class="eicon">🚀</div><p>لا توجد طلبات حتى الآن</p></div>
+  </div>
+
+</main>
+
+<!-- PROFILE MODAL -->
+<div class="moverlay" id="profileM" onclick="bgClose(event,'profileM')">
+  <div class="modal">
+    <div class="mhdr"><span class="mtitle">👤 ملفي الشخصي</span><button class="mclose" onclick="closeModal('profileM')">✕</button></div>
+    <div class="pinfo">
+      <div class="bigavtr" id="bigAvtr">؟</div>
+      <div><div class="pnm" id="pnDisp">زائر</div><div class="pid" id="pidDisp">ID: …</div></div>
+    </div>
+    <div class="pstats">
+      <div class="pstat"><div class="psnum" id="stG">0</div><div class="pslbl">معايدات أرسلتها</div></div>
+      <div class="pstat"><div class="psnum" id="stB">0</div><div class="pslbl">طلبات تفاعل</div></div>
+    </div>
+    <div class="dvdr"></div>
+    <div class="fg" style="margin-bottom:.65rem">
+      <label>اسمك في الموقع</label>
+      <input type="text" class="inp" id="pnInput" placeholder="اكتب اسمك..." maxlength="40">
+    </div>
+    <button class="sbtn" onclick="saveProfile()">💾 حفظ الملف الشخصي</button>
+  </div>
+</div>
+
+<!-- BOOST MODAL -->
+<div class="moverlay" id="boostM" onclick="bgClose(event,'boostM')">
+  <div class="modal">
+    <div class="mhdr"><span class="mtitle">🚀 رفع التفاعل على منشورك</span><button class="mclose" onclick="closeModal('boostM')">✕</button></div>
+    <div style="font-size:.74rem;color:var(--txt2);line-height:1.6;padding:.45rem .58rem;background:rgba(245,200,66,.04);border:1px solid rgba(245,200,66,.14);border-radius:var(--rs);margin-bottom:.8rem">
+      ⚠️ تأكد أن <strong>منشورك عام</strong> وأن <strong>حسابك عام</strong> حتى يتمكن الآخرون من التفاعل
+    </div>
+    <div class="fg">
+      <label>اختر المنصة</label>
+      <div class="pgrid">
+        <button class="pcard" onclick="selPlatform(this,'facebook')"><div class="picon">📘</div><div class="pname">Facebook</div><div class="pstatus av">✅ متاح</div></button>
+        <button class="pcard" onclick="selPlatform(this,'instagram')"><div class="picon">📸</div><div class="pname">Instagram</div><div class="pstatus av">✅ متاح</div></button>
+        <button class="pcard" disabled><div class="picon">𝕏</div><div class="pname">Twitter/X</div><div class="pstatus so">🔜 قريباً</div></button>
+        <button class="pcard" disabled><div class="picon">🎵</div><div class="pname">TikTok</div><div class="pstatus so">🔜 قريباً</div></button>
+        <button class="pcard" disabled><div class="picon">▶️</div><div class="pname">YouTube</div><div class="pstatus so">🔜 قريباً</div></button>
+        <button class="pcard" disabled><div class="picon">💼</div><div class="pname">LinkedIn</div><div class="pstatus so">🔜 قريباً</div></button>
+      </div>
+    </div>
+    <div id="boostExtras" style="display:none">
+      <div class="fg" style="margin-bottom:.62rem">
+        <label>رابط المنشور</label>
+        <input type="url" class="inp" id="bUrl" placeholder="https://…" dir="ltr">
+      </div>
+      <div class="fg" style="margin-bottom:.62rem">
+        <label>نوع التفاعل المطلوب</label>
+        <div class="rchips" id="rchips"></div>
+      </div>
+      <button class="sbtn" onclick="submitBoost()">🚀 نشر الطلب</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- POPUP AD (appears after 60s) -->
+<div class="adpop-overlay" id="adPopM">
+  <div class="adpop-box">
+    <div class="adpop-hdr">
+      <span class="adpop-title">إعلان مدعوم</span>
+      <button class="adpop-close" onclick="closeModal('adPopM')">✕</button>
+    </div>
+    <div class="adpop-body" id="adPopBody">
+      <!-- ضع هنا كود إعلان addstaera للبوب-أب -->
+    </div>
+    <div class="adpop-footer">يمكنك إغلاق هذا الإعلان</div>
+  </div>
+</div>
+
+<!-- THEME MODAL -->
+<div class="moverlay" id="themeM" onclick="bgClose(event,'themeM')">
+  <div class="modal">
+    <div class="mhdr">
+      <span class="mtitle">🎨 تخصيص المظهر</span>
+      <button class="mclose" onclick="closeModal('themeM')">✕</button>
+    </div>
+    <div class="tp-section">
+      <div class="tp-label">الوضع</div>
+      <div class="mode-chips">
+        <button class="mode-chip" id="mDark"  onclick="setMode('dark')">🌙 داكن</button>
+        <button class="mode-chip" id="mLight" onclick="setMode('light')">☀️ فاتح</button>
+      </div>
+    </div>
+    <div class="tp-section">
+      <div class="tp-label">لون الخلفية</div>
+      <div class="tp-row" id="bgSwatches">
+        <div class="bg-swatch" data-bg="bg-stars"   style="background:linear-gradient(135deg,#0e0720,#8b5cf6)" title="بنفسجي نجوم" onclick="setBg('bg-stars')"></div>
+        <div class="bg-swatch" data-bg="bg-emerald" style="background:linear-gradient(135deg,#021a0e,#10b981)" title="أخضر زمردي" onclick="setBg('bg-emerald')"></div>
+        <div class="bg-swatch" data-bg="bg-navy"    style="background:linear-gradient(135deg,#020b18,#3b82f6)" title="أزرق نيلي"   onclick="setBg('bg-navy')"></div>
+        <div class="bg-swatch" data-bg="bg-rose"    style="background:linear-gradient(135deg,#180208,#f43f5e)" title="وردي أحمر"  onclick="setBg('bg-rose')"></div>
+        <div class="bg-swatch" data-bg="bg-gold"    style="background:linear-gradient(135deg,#1a1000,#f5c842)" title="ذهبي دافئ"  onclick="setBg('bg-gold')"></div>
+      </div>
+    </div>
+    <button class="sbtn" onclick="closeModal('themeM')">✓ تطبيق</button>
+  </div>
+</div>
+
+<script>
+/* ==================================================
+   THEME  — bg + mode
+================================================== */
+var CUR_BG   = localStorage.getItem("_eid_bg")   || "bg-stars";
+var CUR_MODE = localStorage.getItem("_eid_mode")  || "dark";
+
+function applyTheme() {
+  var body = document.body;
+  // remove all bg classes
+  ["bg-stars","bg-emerald","bg-navy","bg-rose","bg-gold"].forEach(function(c){
+    body.classList.remove(c);
+  });
+  body.classList.remove("light");
+  body.classList.add(CUR_BG);
+  if (CUR_MODE === "light") body.classList.add("light");
+
+  // update swatch selected state
+  document.querySelectorAll(".bg-swatch").forEach(function(el){
+    el.classList.toggle("sel", el.dataset.bg === CUR_BG);
+  });
+  // update mode chip selected
+  var md = document.getElementById("mDark");
+  var ml = document.getElementById("mLight");
+  if (md) md.classList.toggle("sel", CUR_MODE === "dark");
+  if (ml) ml.classList.toggle("sel", CUR_MODE === "light");
+}
+
+function setBg(bg) {
+  CUR_BG = bg;
+  localStorage.setItem("_eid_bg", bg);
+  applyTheme();
+}
+
+function setMode(mode) {
+  CUR_MODE = mode;
+  localStorage.setItem("_eid_mode", mode);
+  applyTheme();
+}
+
+/* ==================================================
+   ADS — max 2 slots, closeable, popup after 60s
+================================================== */
+var ADS_CLOSED_KEY = "_eid_ads_closed";
+
+function initAds() {
+  var closed = JSON.parse(localStorage.getItem(ADS_CLOSED_KEY) || "[]");
+
+  // count how many slots to show (max 2)
+  var visible = 0;
+  ["adSlot1","adSlot2"].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (closed.indexOf(id) !== -1 || visible >= 2) {
+      el.classList.add("hidden");
+    } else {
+      el.classList.remove("hidden");
+      visible++;
+    }
+  });
+
+  // Popup ad after 60 seconds (only once per session)
+  if (!sessionStorage.getItem("_eid_popup_shown")) {
+    setTimeout(function() {
+      var pop = document.getElementById("adPopM");
+      if (pop) {
+        pop.classList.add("open");
+        sessionStorage.setItem("_eid_popup_shown", "1");
+      }
+    }, 60000);
+  }
+}
+
+function closeAd(slotId) {
+  var el = document.getElementById(slotId);
+  if (el) el.classList.add("hidden");
+  // remember closed slots (session only — resets on refresh)
+  // use sessionStorage so ads can reappear next visit
+  var closed = JSON.parse(localStorage.getItem(ADS_CLOSED_KEY) || "[]");
+  if (closed.indexOf(slotId) === -1) closed.push(slotId);
+  localStorage.setItem(ADS_CLOSED_KEY, JSON.stringify(closed));
+}
+
+/* ==================================================
+   MESSAGES
+================================================== */
+var DEFAULT_MSGS = {
+  warm:
+    "🌙 عيد مبارك يا أغلى الناس على قلبي\n" +
+    "كل عام وأنت قريب مني بروحك وحبك\n" +
+    "تقبل الله طاعتنا وجعل العيد فرحة تجمع الأحباب\n" +
+    "أحبك كثيراً وأتمنى لك كل السعادة والبركة ❤️",
+  formal:
+    "بمناسبة حلول عيد الفطر المبارك 🌙\n" +
+    "أتقدم إليكم بأحر التهاني وأصدق التبريكات\n" +
+    "تقبل الله منا ومنكم صالح الأعمال والصيام والقيام\n" +
+    "وكل عام وأنتم بخير وصحة وعافية ✨",
+  funny:
+    "😁 كل سنة وأنت طيب يا صاحبي!\n" +
+    "العيد جه والعيدية فين؟ 👀\n" +
+    "إن ما جبتلناش عيدية.. ربنا يعيد عليك وأنت صايم رمضانين 😂\n" +
+    "بالجد عيد مبارك وكل سنة وأنت بألف خير يا غالي 🌙",
+  kids:
+    "🎁 عيد مبارك يا أحلى واحد في الدنيا!\n" +
+    "العيد جه وجابلك فرحة وكعك وحلويات 🍪🍭\n" +
+    "وهدايا كتييير هتبقى مبسوط أوي 🎊\n" +
+    "كل سنة وأنت تكبر وتبقى أجمل وأحلى 🌟",
+  short:
+    "عيد الفطر المبارك 🌙\n" +
+    "تقبل الله منا ومنكم\n" +
+    "كل عام وأنتم بخير وعافية ✨"
+};
+
+/* ==================================================
+   CONSTANTS & STATE
+================================================== */
+var OR_KEY      = "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";
+var OR_MODEL    = "openai/gpt-oss-120b:free";
+var EID_TARGET  = new Date("2026-03-29T00:00:00");
+var db          = null;
+var uid         = null;
+var uname       = "";
+var selT        = null;
+var selPlatStr  = null;
+var selReact    = null;
+var greetings   = [];
+var boosts_data = [];
+var greetMap    = {};
+var LS_G        = "_eid_g";
+var LS_B        = "_eid_b";
+
+/* ==================================================
+   LOCAL STORAGE HELPERS
+================================================== */
+function lsGet(k) {
+  try { return JSON.parse(localStorage.getItem(k) || "[]"); } catch(e) { return []; }
+}
+function lsSet(k, arr) {
+  try { localStorage.setItem(k, JSON.stringify(arr)); } catch(e) {}
+}
+function lsAdd(k, obj) {
+  obj.id = "L" + Date.now() + Math.random().toString(36).slice(2,5);
+  obj._t = Date.now();
+  var arr = lsGet(k);
+  arr.unshift(obj);
+  if (arr.length > 60) arr.length = 60;
+  lsSet(k, arr);
+  return obj;
+}
+function lsDel(k, id) { lsSet(k, lsGet(k).filter(function(x){ return x.id !== id; })); }
+function lsUpd(k, id, p) {
+  lsSet(k, lsGet(k).map(function(x){ return x.id === id ? Object.assign({}, x, p) : x; }));
+}
+
+/* ==================================================
+   TS HELPER
+================================================== */
+function tsDate(ts) {
+  if (!ts) return new Date();
+  if (ts.toDate) return ts.toDate();
+  if (ts._t)    return new Date(ts._t);
+  return new Date();
+}
+
+/* ==================================================
+   DB ABSTRACTION
+================================================== */
+var DB = {
+  add: function(col, doc, cb) {
+    if (db) {
+      doc.ts = firebase.firestore.FieldValue.serverTimestamp();
+      db.collection(col).add(doc)
+        .then(function(){ cb(null); })
+        .catch(function(e){ cb(e); });
+    } else {
+      lsAdd(col === "greetings" ? LS_G : LS_B, doc);
+      cb(null);
+    }
+  },
+  upd: function(id, patch, cb) {
+    if (db) {
+      patch.upd = firebase.firestore.FieldValue.serverTimestamp();
+      db.collection("greetings").doc(id).update(patch)
+        .then(function(){ cb(null); })
+        .catch(function(e){ cb(e); });
+    } else {
+      lsUpd(LS_G, id, patch);
+      cb(null);
+    }
+  },
+  del: function(id, cb) {
+    if (db) {
+      db.collection("greetings").doc(id).delete()
+        .then(function(){ cb(null); })
+        .catch(function(e){ cb(e); });
+    } else {
+      lsDel(LS_G, id);
+      cb(null);
+    }
+  }
+};
+
+/* ==================================================
+   FIREBASE DYNAMIC LOADER
+================================================== */
+function loadScript(src, cb) {
+  var s = document.createElement("script");
+  s.src = src;
+  s.onload  = function(){ cb(null); };
+  s.onerror = function(){ cb(new Error("blocked")); };
+  document.head.appendChild(s);
+}
+
+function tryFirebase(cb) {
+  var V = "8.10.0";
+  var base = "https://www.gstatic.com/firebasejs/" + V + "/";
+  loadScript(base + "firebase-app.js", function(e) {
+    if (e) { cb(e); return; }
+    loadScript(base + "firebase-firestore.js", cb);
+  });
+}
+
+/* ==================================================
+   LISTEN
+================================================== */
+function listenGreetings() {
+  if (db) {
+    db.collection("greetings").orderBy("ts","desc").limit(60)
+      .onSnapshot(function(snap) {
+        greetings = snap.docs.map(function(d){ var o=d.data(); o.id=d.id; return o; });
+        renderGreetings();
+      }, function(){ greetings = lsGet(LS_G); renderGreetings(); });
+  } else {
+    greetings = lsGet(LS_G);
+    renderGreetings();
+    setInterval(function(){ greetings = lsGet(LS_G); renderGreetings(); }, 5000);
+  }
+}
+
+function listenBoosts() {
+  if (db) {
+    db.collection("boosts").orderBy("ts","desc").limit(30)
+      .onSnapshot(function(snap) {
+        boosts_data = snap.docs.map(function(d){ var o=d.data(); o.id=d.id; return o; });
+        renderBoosts();
+      }, function(){ boosts_data = lsGet(LS_B); renderBoosts(); });
+  } else {
+    boosts_data = lsGet(LS_B);
+    renderBoosts();
+  }
+}
+
+/* ==================================================
+   STARTUP
+================================================== */
+(function start() {
+  genStars();
+  genEidFloats();
+  initUser();
+  tickClock();
+  tickCountdown();
+  setInterval(tickClock, 1000);
+  setInterval(tickCountdown, 1000);
+
+  var chip = document.querySelector('[data-t="warm"]');
+  if (chip) selType(chip);
+  applyTheme();
+  initAds();
+
+  tryFirebase(function(err) {
+    if (!err) {
+      try {
+        if (!firebase.apps.length) {
+          firebase.initializeApp({
+            apiKey:            "AIzaSyAyzh2HZM0ZoLL-lIQmjlXD6wW6b0LvtV0",
+            authDomain:        "eidmbark-30c9b.firebaseapp.com",
+            projectId:         "eidmbark-30c9b",
+            storageBucket:     "eidmbark-30c9b.firebasestorage.app",
+            messagingSenderId: "311421574205",
+            appId:             "1:311421574205:web:381db784b6cce637a21e54"
+          });
         }
+        db = firebase.firestore();
+        db.collection("users").doc(uid).set(
+          { deviceId:uid, name:uname, seen:firebase.firestore.FieldValue.serverTimestamp() },
+          { merge:true }
+        ).catch(function(){});
+      } catch(e2) { db = null; }
+    }
+    listenGreetings();
+    listenBoosts();
+  });
+}());
 
-        function setBg(bg) {
-            CUR_BG = bg;
-            localStorage.setItem("_eid_bg", bg);
-            applyTheme();
-        }
+/* ==================================================
+   BACKGROUND
+================================================== */
+function genStars() {
+  var w = document.getElementById("starsWrap");
+  if (!w) return;
+  for (var i = 0; i < 80; i++) {
+    var s  = document.createElement("div");
+    s.className = "star";
+    var sz = 0.5 + Math.random() * 2.5;
+    s.style.cssText = "left:" + (Math.random()*100) + "%;top:" + (Math.random()*100) +
+      "%;width:" + sz + "px;height:" + sz + "px;--td:" + (2+Math.random()*5) +
+      "s;--tl:" + (Math.random()*6) + "s";
+    w.appendChild(s);
+  }
+}
 
-        function setMode(mode) {
-            CUR_MODE = mode;
-            localStorage.setItem("_eid_mode", mode);
-            applyTheme();
-        }
+function genEidFloats() {
+  var w = document.getElementById("eidFloats");
+  if (!w) return;
+  var em = ["🌙","⭐","🌟","✨","🎊","🕌","🌺","🪔","🎁","🌙","✨","🌟","⭐","🕌"];
+  for (var i = 0; i < 14; i++) {
+    var el = document.createElement("div");
+    el.className = "ef";
+    el.style.cssText =
+      "left:" + (Math.random()*94) + "%;" +
+      "top:"  + (Math.random()*94) + "%;" +
+      "font-size:" + (1.0 + Math.random()*2.2) + "rem;" +
+      "opacity:" + (0.04 + Math.random()*0.11) + ";" +
+      "--fd2:" + (6 + Math.random()*9) + "s;" +
+      "--fl:"  + (Math.random()*5) + "s;" +
+      "--r0:"  + (Math.random()*28-14) + "deg;" +
+      "--r1:"  + (Math.random()*28-14) + "deg";
+    el.textContent = em[i % em.length];
+    w.appendChild(el);
+  }
+}
 
-        /* ==================================================
-           ADS — max 2 slots, closeable, popup after 60s
-        ================================================== */
-        var ADS_CLOSED_KEY = "_eid_ads_closed";
+/* ==================================================
+   CLOCK
+================================================== */
+function tickClock() {
+  var n = new Date();
+  var te = document.getElementById("clkTime");
+  if (te) te.textContent = pad(n.getHours()) + ":" + pad(n.getMinutes()) + ":" + pad(n.getSeconds());
+  var ge = document.getElementById("clkGreg");
+  if (ge) ge.textContent = n.toLocaleDateString("ar-EG",
+    { weekday:"short", year:"numeric", month:"long", day:"numeric" });
+  var he = document.getElementById("clkHijri");
+  if (he) {
+    try {
+      he.textContent = n.toLocaleDateString("ar-SA-u-ca-islamic",
+        { year:"numeric", month:"long", day:"numeric" });
+    } catch(e) { he.textContent = "شوال ١٤٤٧ هـ"; }
+  }
+}
+function pad(n) { return String(n).padStart(2,"0"); }
 
-        function initAds() {
-            var closed = JSON.parse(localStorage.getItem(ADS_CLOSED_KEY) || "[]");
+/* ==================================================
+   COUNTDOWN
+================================================== */
+function tickCountdown() {
+  var diff = EID_TARGET - new Date();
+  var g = document.getElementById("cdGrid");
+  if (!g) return;
+  if (diff <= 0) {
+    g.innerHTML = '<div class="eid-passed">🌙 عيد الفطر المبارك — كل عام وأنتم بخير 🎉</div>';
+    return;
+  }
+  var dd = Math.floor(diff / 86400000);
+  var hh = Math.floor((diff % 86400000) / 3600000);
+  var mm = Math.floor((diff % 3600000) / 60000);
+  var ss = Math.floor((diff % 60000) / 1000);
+  function sv(id, v) { var el = document.getElementById(id); if (el) el.textContent = pad(v); }
+  sv("cdD",dd); sv("cdH",hh); sv("cdM",mm); sv("cdS",ss);
+}
 
-            // count how many slots to show (max 2)
-            var visible = 0;
-            ["adSlot1", "adSlot2"].forEach(function (id) {
-                var el = document.getElementById(id);
-                if (!el) return;
-                if (closed.indexOf(id) !== -1 || visible >= 2) {
-                    el.classList.add("hidden");
-                } else {
-                    el.classList.remove("hidden");
-                    visible++;
-                }
-            });
+/* ==================================================
+   USER
+================================================== */
+function initUser() {
+  var id = localStorage.getItem("_eid_mid");
+  if (!id) {
+    id = "u" + Date.now() + Math.random().toString(36).slice(2,7);
+    localStorage.setItem("_eid_mid", id);
+  }
+  uid   = id;
+  uname = localStorage.getItem("_eid_mname") || "";
+  refreshUI();
+}
 
-            // Popup ad after 60 seconds (only once per session)
-            if (!sessionStorage.getItem("_eid_popup_shown")) {
-                setTimeout(function () {
-                    var pop = document.getElementById("adPopM");
-                    if (pop) {
-                        pop.classList.add("open");
-                        sessionStorage.setItem("_eid_popup_shown", "1");
-                    }
-                }, 60000);
-            }
-        }
+function refreshUI() {
+  var init = uname ? uname.charAt(0) : "؟";
+  function sv(id, v) { var el = document.getElementById(id); if (el) el.textContent = v; }
+  sv("avBtn",   init);
+  sv("bigAvtr", init);
+  sv("pnDisp",  uname || "زائر");
+  sv("pidDisp", "ID: " + (uid||"").slice(0,14) + "…");
+  var pi = document.getElementById("pnInput"); if (pi) pi.value = uname;
+  var sn = document.getElementById("sname");   if (sn && !sn.value && uname) sn.value = uname;
+}
 
-        function closeAd(slotId) {
-            var el = document.getElementById(slotId);
-            if (el) el.classList.add("hidden");
-            // remember closed slots (session only — resets on refresh)
-            // use sessionStorage so ads can reappear next visit
-            var closed = JSON.parse(localStorage.getItem(ADS_CLOSED_KEY) || "[]");
-            if (closed.indexOf(slotId) === -1) closed.push(slotId);
-            localStorage.setItem(ADS_CLOSED_KEY, JSON.stringify(closed));
-        }
+/* ==================================================
+   TYPE CHIPS
+================================================== */
+function selType(el) {
+  selT = el.dataset.t;
+  document.querySelectorAll(".tchip").forEach(function(c){ c.classList.remove("sel"); });
+  el.classList.add("sel");
+  var ap = document.getElementById("aiPanel");
+  var mf = document.getElementById("msgFg");
+  var gm = document.getElementById("gmsg");
+  if (selT === "ai") {
+    if (ap) ap.classList.add("show");
+    if (mf) mf.style.display = "none";
+  } else {
+    if (ap) ap.classList.remove("show");
+    if (mf) mf.style.display = "";
+    if (gm) gm.value = DEFAULT_MSGS[selT] || "";
+  }
+}
 
-        /* ==================================================
-           MESSAGES
-        ================================================== */
-        var DEFAULT_MSGS = {
-            warm:
-                "🌙 عيد مبارك يا أغلى الناس على قلبي\n" +
-                "كل عام وأنت قريب مني بروحك وحبك\n" +
-                "تقبل الله طاعتنا وجعل العيد فرحة تجمع الأحباب\n" +
-                "أحبك كثيراً وأتمنى لك كل السعادة والبركة ❤️",
-            formal:
-                "بمناسبة حلول عيد الفطر المبارك 🌙\n" +
-                "أتقدم إليكم بأحر التهاني وأصدق التبريكات\n" +
-                "تقبل الله منا ومنكم صالح الأعمال والصيام والقيام\n" +
-                "وكل عام وأنتم بخير وصحة وعافية ✨",
-            funny:
-                "😁 كل سنة وأنت طيب يا صاحبي!\n" +
-                "العيد جه والعيدية فين؟ 👀\n" +
-                "إن ما جبتلناش عيدية.. ربنا يعيد عليك وأنت صايم رمضانين 😂\n" +
-                "بالجد عيد مبارك وكل سنة وأنت بألف خير يا غالي 🌙",
-            kids:
-                "🎁 عيد مبارك يا أحلى واحد في الدنيا!\n" +
-                "العيد جه وجابلك فرحة وكعك وحلويات 🍪🍭\n" +
-                "وهدايا كتييير هتبقى مبسوط أوي 🎊\n" +
-                "كل سنة وأنت تكبر وتبقى أجمل وأحلى 🌟",
-            short:
-                "عيد الفطر المبارك 🌙\n" +
-                "تقبل الله منا ومنكم\n" +
-                "كل عام وأنتم بخير وعافية ✨"
-        };
+/* ==================================================
+   RECIPIENT
+================================================== */
+function onRsel() {
+  var v  = document.getElementById("rsel").value;
+  var rc = document.getElementById("rcustom");
+  if (rc) rc.style.display = (v === "custom") ? "block" : "none";
+}
 
-        /* ==================================================
-           CONSTANTS & STATE
-        ================================================== */
-        var OR_KEY = "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";
-        var OR_MODEL = "openai/gpt-oss-120b:free";
-        var EID_TARGET = new Date("2026-03-29T00:00:00");
-        var db = null;
-        var uid = null;
-        var uname = "";
-        var selT = null;
-        var selPlatStr = null;
-        var selReact = null;
-        var greetings = [];
-        var boosts_data = [];
-        var greetMap = {};
-        var LS_G = "_eid_g";
-        var LS_B = "_eid_b";
+function toggleAnon() {
+  var a = document.getElementById("anonCk").checked;
+  var s = document.getElementById("sname");
+  if (s) { s.disabled = a; s.style.opacity = a ? "0.38" : "1"; }
+}
 
-        /* ==================================================
-           LOCAL STORAGE HELPERS
-        ================================================== */
-        function lsGet(k) {
-            try { return JSON.parse(localStorage.getItem(k) || "[]"); } catch (e) { return []; }
-        }
-        function lsSet(k, arr) {
-            try { localStorage.setItem(k, JSON.stringify(arr)); } catch (e) { }
-        }
-        function lsAdd(k, obj) {
-            obj.id = "L" + Date.now() + Math.random().toString(36).slice(2, 5);
-            obj._t = Date.now();
-            var arr = lsGet(k);
-            arr.unshift(obj);
-            if (arr.length > 60) arr.length = 60;
-            lsSet(k, arr);
-            return obj;
-        }
-        function lsDel(k, id) { lsSet(k, lsGet(k).filter(function (x) { return x.id !== id; })); }
-        function lsUpd(k, id, p) {
-            lsSet(k, lsGet(k).map(function (x) { return x.id === id ? Object.assign({}, x, p) : x; }));
-        }
+/* ==================================================
+   AI
+================================================== */
+function genAI(sender, recip, lang, extra) {
+  var prompt =
+    "اكتب معايدة جميلة بمناسبة عيد الفطر المبارك بـ" + lang + ".\n" +
+    "من: " + sender + "\nإلى: " + recip + "\n" +
+    (extra ? "تفاصيل: " + extra + "\n" : "") +
+    "اكتب نص المعايدة فقط بدون مقدمات. 3-5 أسطر جميلة مع إيموجي مناسبة.";
+  return fetch("https://openrouter.ai/api/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type":  "application/json",
+      "Authorization": "Bearer " + OR_KEY,
+      "HTTP-Referer":  location.origin,
+      "X-Title":       "عيد مبارك"
+    },
+    body: JSON.stringify({ model:OR_MODEL, messages:[{role:"user",content:prompt}], max_tokens:400 })
+  })
+  .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+  .then(function(d){
+    return ((d.choices && d.choices[0] && d.choices[0].message && d.choices[0].message.content) || "").trim();
+  });
+}
 
-        /* ==================================================
-           TS HELPER
-        ================================================== */
-        function tsDate(ts) {
-            if (!ts) return new Date();
-            if (ts.toDate) return ts.toDate();
-            if (ts._t) return new Date(ts._t);
-            return new Date();
-        }
+/* ==================================================
+   SUBMIT
+================================================== */
+function submitGreeting() {
+  if (!selT) { toast("اختر نوع المعايدة أولاً","err"); return; }
+  var isAnon = document.getElementById("anonCk").checked;
+  var snEl   = document.getElementById("sname");
+  var sname  = isAnon ? "" : ((snEl ? snEl.value.trim() : "") || uname || "");
+  var rsel   = document.getElementById("rsel").value;
+  var rcEl   = document.getElementById("rcustom");
+  var rrel   = rsel === "custom" ? (rcEl ? rcEl.value.trim() : "") : rsel;
+  var rpEl   = document.getElementById("rname");
+  var rpers  = rpEl ? rpEl.value.trim() : "";
+  if (!rrel) { toast("اختر أو اكتب اسم المُعاد عليه","err"); return; }
 
-        /* ==================================================
-           DB ABSTRACTION
-        ================================================== */
-        var DB = {
-            add: function (col, doc, cb) {
-                if (db) {
-                    doc.ts = firebase.firestore.FieldValue.serverTimestamp();
-                    db.collection(col).add(doc)
-                        .then(function () { cb(null); })
-                        .catch(function (e) { cb(e); });
-                } else {
-                    lsAdd(col === "greetings" ? LS_G : LS_B, doc);
-                    cb(null);
-                }
-            },
-            upd: function (id, patch, cb) {
-                if (db) {
-                    patch.upd = firebase.firestore.FieldValue.serverTimestamp();
-                    db.collection("greetings").doc(id).update(patch)
-                        .then(function () { cb(null); })
-                        .catch(function (e) { cb(e); });
-                } else {
-                    lsUpd(LS_G, id, patch);
-                    cb(null);
-                }
-            },
-            del: function (id, cb) {
-                if (db) {
-                    db.collection("greetings").doc(id).delete()
-                        .then(function () { cb(null); })
-                        .catch(function (e) { cb(e); });
-                } else {
-                    lsDel(LS_G, id);
-                    cb(null);
-                }
-            }
-        };
+  var btn  = document.getElementById("sbtn");
+  var btxt = document.getElementById("sbtnTxt");
+  btn.disabled = true;
 
-        /* ==================================================
-           FIREBASE DYNAMIC LOADER
-        ================================================== */
-        function loadScript(src, cb) {
-            var s = document.createElement("script");
-            s.src = src;
-            s.onload = function () { cb(null); };
-            s.onerror = function () { cb(new Error("blocked")); };
-            document.head.appendChild(s);
-        }
+  function resetBtn() { btn.disabled = false; btxt.innerHTML = "🌙 أرسل المعايدة"; }
 
-        function tryFirebase(cb) {
-            var V = "8.10.0";
-            var base = "https://www.gstatic.com/firebasejs/" + V + "/";
-            loadScript(base + "firebase-app.js", function (e) {
-                if (e) { cb(e); return; }
-                loadScript(base + "firebase-firestore.js", cb);
-            });
-        }
+  if (selT === "ai") {
+    btxt.innerHTML = '<div class="spin"></div> الذكاء الاصطناعي يكتب…';
+    var lang  = document.getElementById("aiLang").value;
+    var aiEl  = document.getElementById("aiExtra");
+    genAI(sname || "مجهول", rpers || rrel, lang, aiEl ? aiEl.value.trim() : "")
+      .then(function(msg){
+        if (!msg) throw new Error("لم يُولَّد نص");
+        doSave(sname, isAnon, rrel, rpers, msg, resetBtn);
+      })
+      .catch(function(e){ toast("خطأ: " + e.message,"err"); resetBtn(); });
+  } else {
+    var gmEl = document.getElementById("gmsg");
+    var msg  = gmEl ? gmEl.value.trim() : "";
+    if (!msg) { toast("اكتب نص المعايدة","err"); resetBtn(); return; }
+    btxt.innerHTML = "⏳ جاري الإرسال…";
+    doSave(sname, isAnon, rrel, rpers, msg, resetBtn);
+  }
+}
 
-        /* ==================================================
-           LISTEN
-        ================================================== */
-        function listenGreetings() {
-            if (db) {
-                db.collection("greetings").orderBy("ts", "desc").limit(60)
-                    .onSnapshot(function (snap) {
-                        greetings = snap.docs.map(function (d) { var o = d.data(); o.id = d.id; return o; });
-                        renderGreetings();
-                    }, function () { greetings = lsGet(LS_G); renderGreetings(); });
-            } else {
-                greetings = lsGet(LS_G);
-                renderGreetings();
-                setInterval(function () { greetings = lsGet(LS_G); renderGreetings(); }, 5000);
-            }
-        }
+function doSave(sname, isAnon, rrel, rpers, msg, done) {
+  var doc = {
+    sid:   uid,
+    sname: isAnon ? "" : (sname || "زائر"),
+    anon:  isAnon,
+    rrel:  rrel,
+    rname: rpers,
+    msg:   msg
+  };
+  DB.add("greetings", doc, function(err) {
+    done();
+    if (err) { toast("خطأ في الحفظ: " + err.message,"err"); return; }
+    toast("✅ تم إرسال معايدتك! 🌙","ok");
+    launchFireworks();
+    if (!db) { greetings = lsGet(LS_G); renderGreetings(); }
+    var gmEl = document.getElementById("gmsg");   if (gmEl) gmEl.value = "";
+    var rnEl = document.getElementById("rname");  if (rnEl) rnEl.value = "";
+    var rsEl = document.getElementById("rsel");   if (rsEl) rsEl.value = "";
+    var rcEl = document.getElementById("rcustom");if (rcEl) rcEl.style.display = "none";
+    var feed = document.getElementById("gfeed");  if (feed) feed.scrollIntoView({behavior:"smooth",block:"start"});
+  });
+}
 
-        function listenBoosts() {
-            if (db) {
-                db.collection("boosts").orderBy("ts", "desc").limit(30)
-                    .onSnapshot(function (snap) {
-                        boosts_data = snap.docs.map(function (d) { var o = d.data(); o.id = d.id; return o; });
-                        renderBoosts();
-                    }, function () { boosts_data = lsGet(LS_B); renderBoosts(); });
-            } else {
-                boosts_data = lsGet(LS_B);
-                renderBoosts();
-            }
-        }
+/* ==================================================
+   RENDER GREETINGS
+================================================== */
+function renderGreetings() {
+  var f    = document.getElementById("gfeed");
+  var gcnt = document.getElementById("gcnt");
+  var stG  = document.getElementById("stG");
+  if (!f) return;
+  if (gcnt) gcnt.textContent = greetings.length;
+  if (stG)  stG.textContent  = greetings.filter(function(g){ return g.sid===uid; }).length;
+  if (!greetings.length) {
+    f.innerHTML = '<div class="empty"><div class="eicon">🌙</div><p>كن أول من يُرسل معايدة العيد!</p></div>';
+    return;
+  }
+  var html = "";
+  for (var i = 0; i < greetings.length; i++) {
+    var g = greetings[i];
+    greetMap[g.id] = buildShareText(g);
+    html += buildCard(g);
+  }
+  f.innerHTML = html;
+}
 
-        /* ==================================================
-           STARTUP
-        ================================================== */
-        (function start() {
-            genStars();
-            genEidFloats();
-            initUser();
-            tickClock();
-            tickCountdown();
-            setInterval(tickClock, 1000);
-            setInterval(tickCountdown, 1000);
+function buildCard(g) {
+  var mine  = (g.sid === uid);
+  var sdisp = g.anon ? "🕵️ مجهول" : ea(g.sname || "زائر");
+  var rdisp = g.rname ? ea(g.rrel + " (" + g.rname + ")") : ea(g.rrel || "؟");
+  var init  = g.anon ? "🕵" : (g.sname ? ea(g.sname.charAt(0)) : "؟");
+  var t     = ftime(tsDate(g.ts));
+  var id    = g.id;
+  var txt   = greetMap[id];
+  var wa    = "https://wa.me/?text=" + encodeURIComponent(txt);
+  var tw    = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(txt);
+  var fb    = "https://www.facebook.com/sharer/sharer.php?u=" +
+              encodeURIComponent(location.href) + "&quote=" + encodeURIComponent(txt);
 
-            var chip = document.querySelector('[data-t="warm"]');
-            if (chip) selType(chip);
-            applyTheme();
-            initAds();
+  var ownerHTML = "";
+  if (mine) {
+    ownerHTML =
+      '<div class="owner-row">' +
+      '<button class="obtn ed" onclick="startEdit(\'' + id + '\')">✏️</button>' +
+      '<button class="obtn dl" onclick="delG(\'' + id + '\')">🗑️</button>' +
+      '</div>';
+  }
 
-            tryFirebase(function (err) {
-                if (!err) {
-                    try {
-                        if (!firebase.apps.length) {
-                            firebase.initializeApp({
-                                apiKey: "AIzaSyAyzh2HZM0ZoLL-lIQmjlXD6wW6b0LvtV0",
-                                authDomain: "eidmbark-30c9b.firebaseapp.com",
-                                projectId: "eidmbark-30c9b",
-                                storageBucket: "eidmbark-30c9b.firebasestorage.app",
-                                messagingSenderId: "311421574205",
-                                appId: "1:311421574205:web:381db784b6cce637a21e54"
-                            });
-                        }
-                        db = firebase.firestore();
-                        db.collection("users").doc(uid).set(
-                            { deviceId: uid, name: uname, seen: firebase.firestore.FieldValue.serverTimestamp() },
-                            { merge: true }
-                        ).catch(function () { });
-                    } catch (e2) { db = null; }
-                }
-                listenGreetings();
-                listenBoosts();
-            });
-        }());
+  return (
+    '<div class="gcard" id="gc-' + id + '">' +
+      '<div class="ghdr">' +
+        '<div class="gfrom">' +
+          '<div class="gavtr">' + init + '</div>' +
+          '<div class="gmeta">' +
+            '<div class="gnames"><span>' + sdisp + '</span><span class="arr">←</span><span class="to">' + rdisp + '</span></div>' +
+            '<div class="gtime">' + t + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<span class="gbadge">🌙 عيد الفطر</span>' +
+      '</div>' +
+      '<div class="vbody" id="vb-' + id + '">' +
+        '<div class="gbody">' + eb(g.msg || "") + '</div>' +
+      '</div>' +
+      '<div class="vedit" id="ve-' + id + '">' +
+        '<textarea class="inp" id="et-' + id + '" rows="4" style="margin-bottom:.32rem">' + ea(g.msg || "") + '</textarea>' +
+        '<div class="edit-btns">' +
+          '<button class="esbtn" onclick="saveEdit(\'' + id + '\')">💾 حفظ</button>' +
+          '<button class="ecbtn" onclick="cancelEdit(\'' + id + '\')">إلغاء</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="gactions">' +
+        '<div class="share-row">' +
+          '<a class="shrbtn wa" href="' + wa + '" target="_blank" rel="noopener">📱 واتساب</a>' +
+          '<a class="shrbtn fb" href="' + fb + '" target="_blank" rel="noopener">📘 فيسبوك</a>' +
+          '<a class="shrbtn tw" href="' + tw + '" target="_blank" rel="noopener">🐦 تويتر</a>' +
+          '<button class="shrbtn cp" onclick="copyG(\'' + id + '\')">📋 نسخ</button>' +
+          '<button class="shrbtn sh" onclick="shareG(\'' + id + '\')">↑ مشاركة</button>' +
+        '</div>' +
+        ownerHTML +
+      '</div>' +
+    '</div>'
+  );
+}
 
-        /* ==================================================
-           BACKGROUND
-        ================================================== */
-        function genStars() {
-            var w = document.getElementById("starsWrap");
-            if (!w) return;
-            for (var i = 0; i < 80; i++) {
-                var s = document.createElement("div");
-                s.className = "star";
-                var sz = 0.5 + Math.random() * 2.5;
-                s.style.cssText = "left:" + (Math.random() * 100) + "%;top:" + (Math.random() * 100) +
-                    "%;width:" + sz + "px;height:" + sz + "px;--td:" + (2 + Math.random() * 5) +
-                    "s;--tl:" + (Math.random() * 6) + "s";
-                w.appendChild(s);
-            }
-        }
+function buildShareText(g) {
+  var s = g.anon ? "مجهول" : (g.sname || "زائر");
+  var r = g.rname ? g.rrel + " (" + g.rname + ")" : (g.rrel || "");
+  return "🌙 معايدة عيد الفطر المبارك\nمن: " + s + " — إلى: " + r +
+         "\n\n" + (g.msg || "") + "\n\n— عبر موقع عيد مبارك\n" + location.href;
+}
 
-        function genEidFloats() {
-            var w = document.getElementById("eidFloats");
-            if (!w) return;
-            var em = ["🌙", "⭐", "🌟", "✨", "🎊", "🕌", "🌺", "🪔", "🎁", "🌙", "✨", "🌟", "⭐", "🕌"];
-            for (var i = 0; i < 14; i++) {
-                var el = document.createElement("div");
-                el.className = "ef";
-                el.style.cssText =
-                    "left:" + (Math.random() * 94) + "%;" +
-                    "top:" + (Math.random() * 94) + "%;" +
-                    "font-size:" + (1.0 + Math.random() * 2.2) + "rem;" +
-                    "opacity:" + (0.04 + Math.random() * 0.11) + ";" +
-                    "--fd2:" + (6 + Math.random() * 9) + "s;" +
-                    "--fl:" + (Math.random() * 5) + "s;" +
-                    "--r0:" + (Math.random() * 28 - 14) + "deg;" +
-                    "--r1:" + (Math.random() * 28 - 14) + "deg";
-                el.textContent = em[i % em.length];
-                w.appendChild(el);
-            }
-        }
+function ea(s) {
+  if (!s) return "";
+  return String(s)
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
+function eb(s) {
+  if (!s) return "";
+  return String(s)
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/\n/g,"<br>");
+}
+function ftime(d) {
+  if (!d) return "";
+  var diff = (Date.now() - d) / 1000;
+  if (diff < 60)    return "منذ لحظات";
+  if (diff < 3600)  return "منذ " + Math.floor(diff/60)   + " دقيقة";
+  if (diff < 86400) return "منذ " + Math.floor(diff/3600) + " ساعة";
+  return d.toLocaleDateString("ar-EG");
+}
 
-        /* ==================================================
-           CLOCK
-        ================================================== */
-        function tickClock() {
-            var n = new Date();
-            var te = document.getElementById("clkTime");
-            if (te) te.textContent = pad(n.getHours()) + ":" + pad(n.getMinutes()) + ":" + pad(n.getSeconds());
-            var ge = document.getElementById("clkGreg");
-            if (ge) ge.textContent = n.toLocaleDateString("ar-EG",
-                { weekday: "short", year: "numeric", month: "long", day: "numeric" });
-            var he = document.getElementById("clkHijri");
-            if (he) {
-                try {
-                    he.textContent = n.toLocaleDateString("ar-SA-u-ca-islamic",
-                        { year: "numeric", month: "long", day: "numeric" });
-                } catch (e) { he.textContent = "شوال ١٤٤٧ هـ"; }
-            }
-        }
-        function pad(n) { return String(n).padStart(2, "0"); }
+/* ==================================================
+   EDIT / DELETE
+================================================== */
+function startEdit(id) {
+  var vb = document.getElementById("vb-"+id);
+  var ve = document.getElementById("ve-"+id);
+  if (vb) vb.classList.add("hide");
+  if (ve) ve.classList.add("show");
+}
+function cancelEdit(id) {
+  var vb = document.getElementById("vb-"+id);
+  var ve = document.getElementById("ve-"+id);
+  if (vb) vb.classList.remove("hide");
+  if (ve) ve.classList.remove("show");
+}
+function saveEdit(id) {
+  var et = document.getElementById("et-"+id);
+  if (!et) return;
+  var m = et.value.trim();
+  if (!m) { toast("لا يمكن حفظ نص فارغ","err"); return; }
+  DB.upd(id, {msg:m}, function(e) {
+    if (e) { toast("فشل الحفظ","err"); return; }
+    toast("✅ تم حفظ التعديل","ok");
+    cancelEdit(id);
+    if (!db) { greetings = lsGet(LS_G); renderGreetings(); }
+  });
+}
+function delG(id) {
+  if (!confirm("هل تريد حذف هذه المعايدة نهائياً؟")) return;
+  DB.del(id, function(e) {
+    if (e) { toast("فشل الحذف","err"); return; }
+    toast("تم الحذف","ok");
+    if (!db) { greetings = lsGet(LS_G); renderGreetings(); }
+  });
+}
 
-        /* ==================================================
-           COUNTDOWN
-        ================================================== */
-        function tickCountdown() {
-            var diff = EID_TARGET - new Date();
-            var g = document.getElementById("cdGrid");
-            if (!g) return;
-            if (diff <= 0) {
-                g.innerHTML = '<div class="eid-passed">🌙 عيد الفطر المبارك — كل عام وأنتم بخير 🎉</div>';
-                return;
-            }
-            var dd = Math.floor(diff / 86400000);
-            var hh = Math.floor((diff % 86400000) / 3600000);
-            var mm = Math.floor((diff % 3600000) / 60000);
-            var ss = Math.floor((diff % 60000) / 1000);
-            function sv(id, v) { var el = document.getElementById(id); if (el) el.textContent = pad(v); }
-            sv("cdD", dd); sv("cdH", hh); sv("cdM", mm); sv("cdS", ss);
-        }
+/* ==================================================
+   COPY / SHARE
+================================================== */
+function copyG(id) {
+  var t = greetMap[id] || "";
+  navigator.clipboard.writeText(t)
+    .then(function(){ toast("✅ تم نسخ المعايدة!","ok"); })
+    .catch(function(){ toast("تعذّر النسخ","err"); });
+}
+function shareG(id) {
+  var t = greetMap[id] || "";
+  if (navigator.share) {
+    navigator.share({title:"🌙 معايدة عيد الفطر", text:t})
+      .catch(function(){ copyG(id); });
+  } else { copyG(id); }
+}
 
-        /* ==================================================
-           USER
-        ================================================== */
-        function initUser() {
-            var id = localStorage.getItem("_eid_mid");
-            if (!id) {
-                id = "u" + Date.now() + Math.random().toString(36).slice(2, 7);
-                localStorage.setItem("_eid_mid", id);
-            }
-            uid = id;
-            uname = localStorage.getItem("_eid_mname") || "";
-            refreshUI();
-        }
+/* ==================================================
+   BOOST
+================================================== */
+var REACTS = {
+  facebook:  ["👍 إعجاب","❤️ أحببت","😂 هههه","😮 واو","😢 حزين","😡 غاضب"],
+  instagram: ["❤️ إعجاب","💬 تعليق"]
+};
 
-        function refreshUI() {
-            var init = uname ? uname.charAt(0) : "؟";
-            function sv(id, v) { var el = document.getElementById(id); if (el) el.textContent = v; }
-            sv("avBtn", init);
-            sv("bigAvtr", init);
-            sv("pnDisp", uname || "زائر");
-            sv("pidDisp", "ID: " + (uid || "").slice(0, 14) + "…");
-            var pi = document.getElementById("pnInput"); if (pi) pi.value = uname;
-            var sn = document.getElementById("sname"); if (sn && !sn.value && uname) sn.value = uname;
-        }
+function selPlatform(el, p) {
+  selPlatStr = p; selReact = null;
+  document.querySelectorAll(".pcard").forEach(function(c){ c.classList.remove("sel"); });
+  el.classList.add("sel");
+  document.getElementById("boostExtras").style.display = "block";
+  var rc = document.getElementById("rchips");
+  if (rc) rc.innerHTML = (REACTS[p]||[]).map(function(r){
+    return '<button class="rchip" onclick="selR(this,\'' + r.replace(/'/g,"&#39;") + '\')">' + r + '</button>';
+  }).join("");
+}
 
-        /* ==================================================
-           TYPE CHIPS
-        ================================================== */
-        function selType(el) {
-            selT = el.dataset.t;
-            document.querySelectorAll(".tchip").forEach(function (c) { c.classList.remove("sel"); });
-            el.classList.add("sel");
-            var ap = document.getElementById("aiPanel");
-            var mf = document.getElementById("msgFg");
-            var gm = document.getElementById("gmsg");
-            if (selT === "ai") {
-                if (ap) ap.classList.add("show");
-                if (mf) mf.style.display = "none";
-            } else {
-                if (ap) ap.classList.remove("show");
-                if (mf) mf.style.display = "";
-                if (gm) gm.value = DEFAULT_MSGS[selT] || "";
-            }
-        }
+function selR(el, r) {
+  selReact = r;
+  document.querySelectorAll(".rchip").forEach(function(c){ c.classList.remove("sel"); });
+  el.classList.add("sel");
+}
 
-        /* ==================================================
-           RECIPIENT
-        ================================================== */
-        function onRsel() {
-            var v = document.getElementById("rsel").value;
-            var rc = document.getElementById("rcustom");
-            if (rc) rc.style.display = (v === "custom") ? "block" : "none";
-        }
+function submitBoost() {
+  if (!selPlatStr) { toast("اختر المنصة","err"); return; }
+  var bEl  = document.getElementById("bUrl");
+  var url  = bEl ? bEl.value.trim() : "";
+  if (!url || url.indexOf("http") !== 0) { toast("أدخل رابطاً صحيحاً","err"); return; }
+  if (!selReact) { toast("اختر نوع التفاعل","err"); return; }
+  DB.add("boosts", {uid:uid, uname:uname||"زائر", platform:selPlatStr, url:url, react:selReact},
+    function(err) {
+      if (err) { toast("فشل النشر","err"); return; }
+      toast("✅ تم نشر طلب التفاعل!","ok");
+      closeModal("boostM");
+      if (bEl) bEl.value = "";
+      selReact = null; selPlatStr = null;
+      document.getElementById("boostExtras").style.display = "none";
+      document.querySelectorAll(".pcard").forEach(function(c){ c.classList.remove("sel"); });
+      if (!db) { boosts_data = lsGet(LS_B); renderBoosts(); }
+    }
+  );
+}
 
-        function toggleAnon() {
-            var a = document.getElementById("anonCk").checked;
-            var s = document.getElementById("sname");
-            if (s) { s.disabled = a; s.style.opacity = a ? "0.38" : "1"; }
-        }
+function renderBoosts() {
+  var f = document.getElementById("bfeed");
+  if (!f) return;
+  var stB = document.getElementById("stB");
+  if (stB) stB.textContent = boosts_data.filter(function(b){ return b.uid===uid; }).length;
+  if (!boosts_data.length) {
+    f.innerHTML = '<div class="empty"><div class="eicon">🚀</div><p>لا توجد طلبات حتى الآن</p></div>';
+    return;
+  }
+  var ic = {facebook:"📘",instagram:"📸",twitter:"𝕏",tiktok:"🎵",youtube:"▶️"};
+  f.innerHTML = boosts_data.map(function(b){
+    return (
+      '<div class="bitem">' +
+        '<div class="bplaticon">' + (ic[b.platform]||"🌐") + '</div>' +
+        '<div class="binfo">' +
+          '<div class="bwho">' + ea(b.uname||"زائر") + " · " + ea(b.platform||"") + '</div>' +
+          '<div class="breact">يطلب: ' + ea(b.react||"تفاعل") + '</div>' +
+        '</div>' +
+        '<a class="bgobtn" href="' + ea(b.url||"#") + '" target="_blank" rel="noopener">تفاعل ↗</a>' +
+      '</div>'
+    );
+  }).join("");
+}
 
-        /* ==================================================
-           AI
-        ================================================== */
-        function genAI(sender, recip, lang, extra) {
-            var prompt =
-                "اكتب معايدة جميلة بمناسبة عيد الفطر المبارك بـ" + lang + ".\n" +
-                "من: " + sender + "\nإلى: " + recip + "\n" +
-                (extra ? "تفاصيل: " + extra + "\n" : "") +
-                "اكتب نص المعايدة فقط بدون مقدمات. 3-5 أسطر جميلة مع إيموجي مناسبة.";
-            return fetch("https://openrouter.ai/api/v1/chat/completions", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer " + OR_KEY,
-                    "HTTP-Referer": location.origin,
-                    "X-Title": "عيد مبارك"
-                },
-                body: JSON.stringify({ model: OR_MODEL, messages: [{ role: "user", content: prompt }], max_tokens: 400 })
-            })
-                .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-                .then(function (d) {
-                    return ((d.choices && d.choices[0] && d.choices[0].message && d.choices[0].message.content) || "").trim();
-                });
-        }
+/* ==================================================
+   PROFILE
+================================================== */
+function saveProfile() {
+  var el = document.getElementById("pnInput");
+  var n  = el ? el.value.trim() : "";
+  uname  = n;
+  localStorage.setItem("_eid_mname", n);
+  if (db) db.collection("users").doc(uid).update({name:n}).catch(function(){});
+  refreshUI();
+  closeModal("profileM");
+  toast("✅ تم حفظ الملف الشخصي","ok");
+}
 
-        /* ==================================================
-           SUBMIT
-        ================================================== */
-        function submitGreeting() {
-            if (!selT) { toast("اختر نوع المعايدة أولاً", "err"); return; }
-            var isAnon = document.getElementById("anonCk").checked;
-            var snEl = document.getElementById("sname");
-            var sname = isAnon ? "" : ((snEl ? snEl.value.trim() : "") || uname || "");
-            var rsel = document.getElementById("rsel").value;
-            var rcEl = document.getElementById("rcustom");
-            var rrel = rsel === "custom" ? (rcEl ? rcEl.value.trim() : "") : rsel;
-            var rpEl = document.getElementById("rname");
-            var rpers = rpEl ? rpEl.value.trim() : "";
-            if (!rrel) { toast("اختر أو اكتب اسم المُعاد عليه", "err"); return; }
+/* ==================================================
+   MODALS
+================================================== */
+function openModal(id)  { var el=document.getElementById(id); if(el) el.classList.add("open"); }
+function closeModal(id) { var el=document.getElementById(id); if(el) el.classList.remove("open"); }
+function bgClose(e,id)  { if(e.target===document.getElementById(id)) closeModal(id); }
 
-            var btn = document.getElementById("sbtn");
-            var btxt = document.getElementById("sbtnTxt");
-            btn.disabled = true;
+/* ==================================================
+   TOAST
+================================================== */
+function toast(msg, type) {
+  var c = document.getElementById("tc");
+  if (!c) return;
+  var t = document.createElement("div");
+  t.className = "toast" + (type ? " " + type : "");
+  t.textContent = msg;
+  c.appendChild(t);
+  setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 3200);
+}
 
-            function resetBtn() { btn.disabled = false; btxt.innerHTML = "🌙 أرسل المعايدة"; }
-
-            if (selT === "ai") {
-                btxt.innerHTML = '<div class="spin"></div> الذكاء الاصطناعي يكتب…';
-                var lang = document.getElementById("aiLang").value;
-                var aiEl = document.getElementById("aiExtra");
-                genAI(sname || "مجهول", rpers || rrel, lang, aiEl ? aiEl.value.trim() : "")
-                    .then(function (msg) {
-                        if (!msg) throw new Error("لم يُولَّد نص");
-                        doSave(sname, isAnon, rrel, rpers, msg, resetBtn);
-                    })
-                    .catch(function (e) { toast("خطأ: " + e.message, "err"); resetBtn(); });
-            } else {
-                var gmEl = document.getElementById("gmsg");
-                var msg = gmEl ? gmEl.value.trim() : "";
-                if (!msg) { toast("اكتب نص المعايدة", "err"); resetBtn(); return; }
-                btxt.innerHTML = "⏳ جاري الإرسال…";
-                doSave(sname, isAnon, rrel, rpers, msg, resetBtn);
-            }
-        }
-
-        function doSave(sname, isAnon, rrel, rpers, msg, done) {
-            var doc = {
-                sid: uid,
-                sname: isAnon ? "" : (sname || "زائر"),
-                anon: isAnon,
-                rrel: rrel,
-                rname: rpers,
-                msg: msg
-            };
-            DB.add("greetings", doc, function (err) {
-                done();
-                if (err) { toast("خطأ في الحفظ: " + err.message, "err"); return; }
-                toast("✅ تم إرسال معايدتك! 🌙", "ok");
-                launchFireworks();
-                if (!db) { greetings = lsGet(LS_G); renderGreetings(); }
-                var gmEl = document.getElementById("gmsg"); if (gmEl) gmEl.value = "";
-                var rnEl = document.getElementById("rname"); if (rnEl) rnEl.value = "";
-                var rsEl = document.getElementById("rsel"); if (rsEl) rsEl.value = "";
-                var rcEl = document.getElementById("rcustom"); if (rcEl) rcEl.style.display = "none";
-                var feed = document.getElementById("gfeed"); if (feed) feed.scrollIntoView({ behavior: "smooth", block: "start" });
-            });
-        }
-
-        /* ==================================================
-           RENDER GREETINGS
-        ================================================== */
-        function renderGreetings() {
-            var f = document.getElementById("gfeed");
-            var gcnt = document.getElementById("gcnt");
-            var stG = document.getElementById("stG");
-            if (!f) return;
-            if (gcnt) gcnt.textContent = greetings.length;
-            if (stG) stG.textContent = greetings.filter(function (g) { return g.sid === uid; }).length;
-            if (!greetings.length) {
-                f.innerHTML = '<div class="empty"><div class="eicon">🌙</div><p>كن أول من يُرسل معايدة العيد!</p></div>';
-                return;
-            }
-            var html = "";
-            for (var i = 0; i < greetings.length; i++) {
-                var g = greetings[i];
-                greetMap[g.id] = buildShareText(g);
-                html += buildCard(g);
-            }
-            f.innerHTML = html;
-        }
-
-        function buildCard(g) {
-            var mine = (g.sid === uid);
-            var sdisp = g.anon ? "🕵️ مجهول" : ea(g.sname || "زائر");
-            var rdisp = g.rname ? ea(g.rrel + " (" + g.rname + ")") : ea(g.rrel || "؟");
-            var init = g.anon ? "🕵" : (g.sname ? ea(g.sname.charAt(0)) : "؟");
-            var t = ftime(tsDate(g.ts));
-            var id = g.id;
-            var txt = greetMap[id];
-            var wa = "https://wa.me/?text=" + encodeURIComponent(txt);
-            var tw = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(txt);
-            var fb = "https://www.facebook.com/sharer/sharer.php?u=" +
-                encodeURIComponent(location.href) + "&quote=" + encodeURIComponent(txt);
-
-            var ownerHTML = "";
-            if (mine) {
-                ownerHTML =
-                    '<div class="owner-row">' +
-                    '<button class="obtn ed" onclick="startEdit(\'' + id + '\')">✏️</button>' +
-                    '<button class="obtn dl" onclick="delG(\'' + id + '\')">🗑️</button>' +
-                    '</div>';
-            }
-
-            return (
-                '<div class="gcard" id="gc-' + id + '">' +
-                '<div class="ghdr">' +
-                '<div class="gfrom">' +
-                '<div class="gavtr">' + init + '</div>' +
-                '<div class="gmeta">' +
-                '<div class="gnames"><span>' + sdisp + '</span><span class="arr">←</span><span class="to">' + rdisp + '</span></div>' +
-                '<div class="gtime">' + t + '</div>' +
-                '</div>' +
-                '</div>' +
-                '<span class="gbadge">🌙 عيد الفطر</span>' +
-                '</div>' +
-                '<div class="vbody" id="vb-' + id + '">' +
-                '<div class="gbody">' + eb(g.msg || "") + '</div>' +
-                '</div>' +
-                '<div class="vedit" id="ve-' + id + '">' +
-                '<textarea class="inp" id="et-' + id + '" rows="4" style="margin-bottom:.32rem">' + ea(g.msg || "") + '</textarea>' +
-                '<div class="edit-btns">' +
-                '<button class="esbtn" onclick="saveEdit(\'' + id + '\')">💾 حفظ</button>' +
-                '<button class="ecbtn" onclick="cancelEdit(\'' + id + '\')">إلغاء</button>' +
-                '</div>' +
-                '</div>' +
-                '<div class="gactions">' +
-                '<div class="share-row">' +
-                '<a class="shrbtn wa" href="' + wa + '" target="_blank" rel="noopener">📱 واتساب</a>' +
-                '<a class="shrbtn fb" href="' + fb + '" target="_blank" rel="noopener">📘 فيسبوك</a>' +
-                '<a class="shrbtn tw" href="' + tw + '" target="_blank" rel="noopener">🐦 تويتر</a>' +
-                '<button class="shrbtn cp" onclick="copyG(\'' + id + '\')">📋 نسخ</button>' +
-                '<button class="shrbtn sh" onclick="shareG(\'' + id + '\')">↑ مشاركة</button>' +
-                '</div>' +
-                ownerHTML +
-                '</div>' +
-                '</div>'
-            );
-        }
-
-        function buildShareText(g) {
-            var s = g.anon ? "مجهول" : (g.sname || "زائر");
-            var r = g.rname ? g.rrel + " (" + g.rname + ")" : (g.rrel || "");
-            return "🌙 معايدة عيد الفطر المبارك\nمن: " + s + " — إلى: " + r +
-                "\n\n" + (g.msg || "") + "\n\n— عبر موقع عيد مبارك\n" + location.href;
-        }
-
-        function ea(s) {
-            if (!s) return "";
-            return String(s)
-                .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
-        }
-        function eb(s) {
-            if (!s) return "";
-            return String(s)
-                .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-                .replace(/\n/g, "<br>");
-        }
-        function ftime(d) {
-            if (!d) return "";
-            var diff = (Date.now() - d) / 1000;
-            if (diff < 60) return "منذ لحظات";
-            if (diff < 3600) return "منذ " + Math.floor(diff / 60) + " دقيقة";
-            if (diff < 86400) return "منذ " + Math.floor(diff / 3600) + " ساعة";
-            return d.toLocaleDateString("ar-EG");
-        }
-
-        /* ==================================================
-           EDIT / DELETE
-        ================================================== */
-        function startEdit(id) {
-            var vb = document.getElementById("vb-" + id);
-            var ve = document.getElementById("ve-" + id);
-            if (vb) vb.classList.add("hide");
-            if (ve) ve.classList.add("show");
-        }
-        function cancelEdit(id) {
-            var vb = document.getElementById("vb-" + id);
-            var ve = document.getElementById("ve-" + id);
-            if (vb) vb.classList.remove("hide");
-            if (ve) ve.classList.remove("show");
-        }
-        function saveEdit(id) {
-            var et = document.getElementById("et-" + id);
-            if (!et) return;
-            var m = et.value.trim();
-            if (!m) { toast("لا يمكن حفظ نص فارغ", "err"); return; }
-            DB.upd(id, { msg: m }, function (e) {
-                if (e) { toast("فشل الحفظ", "err"); return; }
-                toast("✅ تم حفظ التعديل", "ok");
-                cancelEdit(id);
-                if (!db) { greetings = lsGet(LS_G); renderGreetings(); }
-            });
-        }
-        function delG(id) {
-            if (!confirm("هل تريد حذف هذه المعايدة نهائياً؟")) return;
-            DB.del(id, function (e) {
-                if (e) { toast("فشل الحذف", "err"); return; }
-                toast("تم الحذف", "ok");
-                if (!db) { greetings = lsGet(LS_G); renderGreetings(); }
-            });
-        }
-
-        /* ==================================================
-           COPY / SHARE
-        ================================================== */
-        function copyG(id) {
-            var t = greetMap[id] || "";
-            navigator.clipboard.writeText(t)
-                .then(function () { toast("✅ تم نسخ المعايدة!", "ok"); })
-                .catch(function () { toast("تعذّر النسخ", "err"); });
-        }
-        function shareG(id) {
-            var t = greetMap[id] || "";
-            if (navigator.share) {
-                navigator.share({ title: "🌙 معايدة عيد الفطر", text: t })
-                    .catch(function () { copyG(id); });
-            } else { copyG(id); }
-        }
-
-        /* ==================================================
-           BOOST
-        ================================================== */
-        var REACTS = {
-            facebook: ["👍 إعجاب", "❤️ أحببت", "😂 هههه", "😮 واو", "😢 حزين", "😡 غاضب"],
-            instagram: ["❤️ إعجاب", "💬 تعليق"]
-        };
-
-        function selPlatform(el, p) {
-            selPlatStr = p; selReact = null;
-            document.querySelectorAll(".pcard").forEach(function (c) { c.classList.remove("sel"); });
-            el.classList.add("sel");
-            document.getElementById("boostExtras").style.display = "block";
-            var rc = document.getElementById("rchips");
-            if (rc) rc.innerHTML = (REACTS[p] || []).map(function (r) {
-                return '<button class="rchip" onclick="selR(this,\'' + r.replace(/'/g, "&#39;") + '\')">' + r + '</button>';
-            }).join("");
-        }
-
-        function selR(el, r) {
-            selReact = r;
-            document.querySelectorAll(".rchip").forEach(function (c) { c.classList.remove("sel"); });
-            el.classList.add("sel");
-        }
-
-        function submitBoost() {
-            if (!selPlatStr) { toast("اختر المنصة", "err"); return; }
-            var bEl = document.getElementById("bUrl");
-            var url = bEl ? bEl.value.trim() : "";
-            if (!url || url.indexOf("http") !== 0) { toast("أدخل رابطاً صحيحاً", "err"); return; }
-            if (!selReact) { toast("اختر نوع التفاعل", "err"); return; }
-            DB.add("boosts", { uid: uid, uname: uname || "زائر", platform: selPlatStr, url: url, react: selReact },
-                function (err) {
-                    if (err) { toast("فشل النشر", "err"); return; }
-                    toast("✅ تم نشر طلب التفاعل!", "ok");
-                    closeModal("boostM");
-                    if (bEl) bEl.value = "";
-                    selReact = null; selPlatStr = null;
-                    document.getElementById("boostExtras").style.display = "none";
-                    document.querySelectorAll(".pcard").forEach(function (c) { c.classList.remove("sel"); });
-                    if (!db) { boosts_data = lsGet(LS_B); renderBoosts(); }
-                }
-            );
-        }
-
-        function renderBoosts() {
-            var f = document.getElementById("bfeed");
-            if (!f) return;
-            var stB = document.getElementById("stB");
-            if (stB) stB.textContent = boosts_data.filter(function (b) { return b.uid === uid; }).length;
-            if (!boosts_data.length) {
-                f.innerHTML = '<div class="empty"><div class="eicon">🚀</div><p>لا توجد طلبات حتى الآن</p></div>';
-                return;
-            }
-            var ic = { facebook: "📘", instagram: "📸", twitter: "𝕏", tiktok: "🎵", youtube: "▶️" };
-            f.innerHTML = boosts_data.map(function (b) {
-                return (
-                    '<div class="bitem">' +
-                    '<div class="bplaticon">' + (ic[b.platform] || "🌐") + '</div>' +
-                    '<div class="binfo">' +
-                    '<div class="bwho">' + ea(b.uname || "زائر") + " · " + ea(b.platform || "") + '</div>' +
-                    '<div class="breact">يطلب: ' + ea(b.react || "تفاعل") + '</div>' +
-                    '</div>' +
-                    '<a class="bgobtn" href="' + ea(b.url || "#") + '" target="_blank" rel="noopener">تفاعل ↗</a>' +
-                    '</div>'
-                );
-            }).join("");
-        }
-
-        /* ==================================================
-           PROFILE
-        ================================================== */
-        function saveProfile() {
-            var el = document.getElementById("pnInput");
-            var n = el ? el.value.trim() : "";
-            uname = n;
-            localStorage.setItem("_eid_mname", n);
-            if (db) db.collection("users").doc(uid).update({ name: n }).catch(function () { });
-            refreshUI();
-            closeModal("profileM");
-            toast("✅ تم حفظ الملف الشخصي", "ok");
-        }
-
-        /* ==================================================
-           MODALS
-        ================================================== */
-        function openModal(id) { var el = document.getElementById(id); if (el) el.classList.add("open"); }
-        function closeModal(id) { var el = document.getElementById(id); if (el) el.classList.remove("open"); }
-        function bgClose(e, id) { if (e.target === document.getElementById(id)) closeModal(id); }
-
-        /* ==================================================
-           TOAST
-        ================================================== */
-        function toast(msg, type) {
-            var c = document.getElementById("tc");
-            if (!c) return;
-            var t = document.createElement("div");
-            t.className = "toast" + (type ? " " + type : "");
-            t.textContent = msg;
-            c.appendChild(t);
-            setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 3200);
-        }
-
-        /* ==================================================
-           FIREWORKS
-        ================================================== */
-        function launchFireworks() {
-            var colors = ["#f5c842", "#ff6b9d", "#00d4b8", "#c084fc", "#fde68a"];
-            for (var i = 0; i < 20; i++) {
-                (function (idx) {
-                    setTimeout(function () {
-                        var p = document.createElement("div");
-                        p.className = "particle";
-                        p.style.cssText =
-                            "left:50%;top:45%;background:" + colors[idx % colors.length] +
-                            ";--dx:" + (Math.random() * 240 - 120) + "px" +
-                            ";--dy:" + (Math.random() * 240 - 120) + "px";
-                        document.body.appendChild(p);
-                        setTimeout(function () { if (p.parentNode) p.parentNode.removeChild(p); }, 950);
-                    }, idx * 45);
-                })(i);
-            }
-        }
-    </script>
+/* ==================================================
+   FIREWORKS
+================================================== */
+function launchFireworks() {
+  var colors = ["#f5c842","#ff6b9d","#00d4b8","#c084fc","#fde68a"];
+  for (var i = 0; i < 20; i++) {
+    (function(idx){
+      setTimeout(function(){
+        var p = document.createElement("div");
+        p.className = "particle";
+        p.style.cssText =
+          "left:50%;top:45%;background:" + colors[idx % colors.length] +
+          ";--dx:" + (Math.random()*240-120) + "px" +
+          ";--dy:" + (Math.random()*240-120) + "px";
+        document.body.appendChild(p);
+        setTimeout(function(){ if(p.parentNode) p.parentNode.removeChild(p); }, 950);
+      }, idx * 45);
+    })(i);
+  }
+}
+</script>
 </body>
-
 </html>
